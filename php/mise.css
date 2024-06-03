@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 body{
     padding: 0px;
     margin: 0px;
@@ -45,6 +46,9 @@ body{
     border-radius: 25px;
     border: 2px solid #dddddd;
     box-shadow: 2px -3px 14px 1px #d4d4d4;
+  }
+  .popup .popup-content .table #partie1{
+    color: rgb(190 184 51);
   }
   .popup .popup-content i{
     display: flex;
@@ -214,8 +218,8 @@ body{
         padding: 23px;
         padding-right: 0px;
         position: fixed;
-        top: 569px;
-        left: 1042px;
+        top: 618px;
+        left: 1119px;
         z-index: 1000;
     }
     button{
@@ -275,21 +279,31 @@ body{
         display: none;
     }
     #ajouter{
-      background: #3f9783;
+      background: #fff762;
       border: 0;
       border-radius: 15px;
-      color: #fbfcfa;
+      color: #aa2324;
       cursor: pointer;
       font: inherit;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: 2px;  
       height: 44px;
       padding: 0px 20px;
       margin-right: 10px;
-      align-items: center;
       display: grid;
       gap: .75rem;
       grid-auto-flow: column;
       align-items: center;
+      border: 1px solid #acac1482;
+    }
+    #ajouter:hover{
+      background-color:#faee00 ;
+      transition: 0.5s;
+    }
+
+    #ajouter:active{
+      background-color:#fcca00 ;
+      
     }
     
     .b6{
@@ -350,8 +364,17 @@ body{
     align-items: center;
   }
   .titrP h1{
-    font-size: 18px;
-    font-family: 'Poppins';
+    font-size: 17px;
+    font-family: "PT Sans", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+  .nbr{
+    margin-right: 10px;
+    font-size: 17px;
+    font-family: "PT Sans", sans-serif;
+    text-transform: capitalize;
+    letter-spacing: 0px;
   }
   .header h1{
     font-size: 20px;
@@ -361,12 +384,23 @@ body{
  
   .b1{
     border: none;
-    background-color: #81BB26;
-    color: white;
+    background: #fff762;
+    color: #aa2324;
     border-radius: 10px;
     width: 115px;
-    height: 37px;
+    height: 32px;
     cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: 1px solid #acac1482;
+  }
+  .b1:hover{
+    background-color:#faee00 ;
+    transition: 0.5s;
+  }
+  .b1:active{
+    background-color:#fcca00 ;
+    
   }
   .filtr{
       display: flex;
@@ -386,24 +420,30 @@ body{
   }
   .filtration select{
     width: 140px;
-    height: 30px;
+    height: 26px;
     display: flex;
-    font-weight: bold;
-      border-radius: 5px;
-      text-align: center;
-      align-items: center;
-      font-size: 15px;
-      font-family: 'poppins';
+    font-weight: 500;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    font-size: 14px;
+    font-family: "PT Sans", sans-serif;
+    letter-spacing: 2px;
+    border: 1px solid #e0e0e0;
+    
   }
   .filtration input{
-      width: 140px;
-      height: 30px;
-      font-weight: bold;
-      display: flex;
-      border-radius: 5px;
-      text-align: center;
-      align-items: center;
-      font-size: 15px;
+    width: 145px;
+    height: 26px;
+    display: flex;
+    font-weight: 500;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    font-size: 14px;
+    font-family: "PT Sans", sans-serif;
+    letter-spacing: 2px;
+    border: 1px solid #e0e0e0;
   }
   .filtr .filtration .re{
     font-size: 20px;
@@ -632,20 +672,92 @@ input[type=file] {
         color: black;
         }
         .popup .product-container .produit .infP #Vprix{
-          font-size: 30px;
-    font-weight: 400;
+          font-size: 23px;
+    font-weight: 800;
     line-height: normal;
     margin-top: 17px;
+    font-family: monospace;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+
           }
           .popup .product-container .produit .infP #Vdesc{
-           
+            word-wrap: break-word;
+            height: 137px;
           margin-top: 0px;
          }
+         .popup .product-container .produit .infP .desc{
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    height: 127px;
+    margin-bottom: 47px;
+         }
          .popup .product-container .produit .infP p{
-          color: #7D7D7D;
+          color: #000000;
+    font-family: 'PT Sans';
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
 
          }
         
         .popup .product-container .produit .infP .date{
           text-align: right;
+          text-align: right;
+    font-size: 12px;
+    font-family: 'PT Sans', sans-serif;
           }
+          .popup .product-container .produit .infP .quan{
+            font-size: 23px;
+            font-weight: 800;
+            line-height: normal;
+            font-family: monospace;
+            text-transform: uppercase;
+            text-align: right;
+          }
+          .popup .product-container .produit .infP .age{
+            font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    font-family: serif;
+    margin-bottom: 26px;
+          }
+          .popup .product-container .produit .infP .nam{
+            text-align: center;
+    font-size: 24px;
+    font-weight: 300;
+    font-family: none;
+    letter-spacing: 3px;
+    text-decoration: underline;
+          }
+          .popup .product-container .produit .infP .button2{
+            display: flex;
+    
+    left: 129px;
+    justify-content: center;
+    gap: 49px
+          }
+          .popup .product-container .produit .infP .button2 .b2{
+            background: #fff767;
+            color: #000000;
+            border-radius: 10px;
+            width: 122px;
+            height: 40px;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid #acac1482;
+          }
+          
+          .popup .product-container .produit .infP .button2 .return{
+            background: #fcf000;
+            color: #000000;
+            border-radius: 10px;
+            width: 122px;
+            height: 40px;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid #acac1482;
+          }
+

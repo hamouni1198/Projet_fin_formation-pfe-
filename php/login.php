@@ -1,29 +1,56 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css">
-    <title>Login</title>
+    <title>Hilfbox Login</title>
+    <link rel="stylesheet" href="../css./login.css">
 </head>
-
 <body>
     <div class="container">
-        <div class="card">
-            <form methode="POST" id="loginForm" >
-                <h1 class="titre">Mega Jouet</h1>
-                <input type="text" placeholder="Username" name="nom" autocomplete="off">
-                <span style="color:red; font-size: 15px; text-align: center;" id="userError"></span>
-                <input type="password" placeholder="Password" name="code" autocomplete="off">
-                <span style="color:red; font-size: 15px; text-align: center;" id="passwordError"></span>
-
-                <input type="submit" value="Login" name="sub" class="b1">
-
-            </form>
+        <div class="left-section">
+            <div class="welcome-message">
+                <div class="logo">
+                    <img src="../logo/img1.jpg" alt="Hilfbox Logo">
+                </div>
+                <h1>Mega Jouet</h1>
+                <p>We are a community together helping thousands of people out there who are struggling.</p>
+              
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="form-container">
+                <h2>Get Started</h2>
+                <p>Already have an account? <a href="#">Sign In</a></p>
+                <form>
+                    <div class="input-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Roseanne Park">
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="roseannepark@gmail.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div class="social-signup">
+                    <p>Or sign up with</p>
+                    <div class="social-icons">
+                        <a href="#"><img src="google.png" alt="Google"></a>
+                        <a href="#"><img src="twitter.png" alt="Twitter"></a>
+                        <a href="#"><img src="facebook.png" alt="Facebook"></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+
+	
 
     <script>
         

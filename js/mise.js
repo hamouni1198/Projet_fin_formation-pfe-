@@ -26,6 +26,9 @@ function openTab(tabName) {
     var precedentBtn = document.getElementById('precedent');
     var enregistreBtn = document.getElementById('button');
     var button = document.getElementById('bu')
+    var partie1 =document.getElementById('partie1')
+    var partie2 =document.getElementById('partie2')
+
     
 
     if (tabName === 'pr') {
@@ -34,7 +37,10 @@ function openTab(tabName) {
         precedentBtn.style.display = 'block';
         suivantBtn.style.display = 'none';
         enregistreBtn.style.display = 'block';
-        button.style.left='913px'
+        button.style.left='1008px'
+        partie1.style.color='black';
+        partie2.style.color='rgb(190 184 51)';
+
 
     } else if (tabName === 'ca') {
         categorieTab.classList.remove('active-tab');
@@ -42,7 +48,10 @@ function openTab(tabName) {
         precedentBtn.style.display = 'none';
         suivantBtn.style.display = 'block';
         enregistreBtn.style.display = 'none';
-        button.style.left='1042px';
+        button.style.left='1119px';
+        partie1.style.color='rgb(190 184 51)';
+        partie2.style.color='black';
+
     }
 }
 document.getElementById("annuler").addEventListener("click", function() {
@@ -59,6 +68,8 @@ function openTabEdite(tabName) {
     var precedentBtn = document.getElementById('preceden');
     var enregistreBtn = document.getElementById('enregistrer');
     var button = document.getElementById('butt')
+    var partie1 =document.getElementById('partie1')
+    var partie2 =document.getElementById('partie2')
     
 
     if (tabName === 'produit') {
@@ -67,7 +78,9 @@ function openTabEdite(tabName) {
         precedentBtn.style.display = 'block';
         suivantBtn.style.display = 'none';
         enregistreBtn.style.display = 'block';
-        button.style.left='913px'
+        button.style.left='1008px'
+        partie1.style.color='black';
+        partie2.style.color='rgb(190 184 51)';
 
     } else if (tabName === 'categorie') {
         categorieTab.classList.remove('active-ta');
@@ -75,7 +88,9 @@ function openTabEdite(tabName) {
         precedentBtn.style.display = 'none';
         suivantBtn.style.display = 'block';
         enregistreBtn.style.display = 'none';
-        button.style.left='1042px';
+        button.style.left='1119px';
+        partie1.style.color='rgb(190 184 51)';
+        partie2.style.color='black';
     }
 }
 document.getElementById("annule").addEventListener("click", function() {

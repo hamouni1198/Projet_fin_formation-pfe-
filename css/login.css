@@ -1,106 +1,145 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;700&display=swap');
-
-body{
+body {
   margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
+  font-family: 'Arial', sans-serif;
   display: flex;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f4f8;
 }
 
 .container {
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.card {
-  width: 350px;
-  background-color: rgb(255, 255, 255);
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  border: 2px solid;
-  border-radius: 10px;
-  transition: transform 1s ease-in-out;
 }
 
-.card:hover {
-  transition: transform 1s ease-in-out;
-  transform: scale(1.2);
+.left-section {
+  flex: 1;
+  background-image: url(../logo/WhatsApp\ Image\ 2024-05-30\ at\ 15.10.18.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 40px;
 }
 
-form {
+.welcome-message {
+  text-align: center;
+}
+
+.welcome-message .logo img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.welcome-message h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.welcome-message p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.images img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.right-section {
+  flex: 1;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  padding: 30px;
-  gap: 10px;
+  justify-content: center;
 }
 
-input {
-    border-radius: 5px;
-    border: 1px solid #D8D8D8;
-    background-color: #FFFFFF;
-  padding: 15px;
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-input:hover{
-    border: 1px solid #747474;
-    background-color: #FAFAFA;
-    padding: 15px;
-
-    }
-    input:focus{
-        border: 1px solid #999999;
-        padding: 15px;
-
-        background-color: rgba(250, 250, 250, 1);
-    }
-.titre {
-    color: hsl(324, 70%, 45%);
-    animation: wheelHueColor 1s infinite;
+.form-container h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
 }
-@keyframes wheelHueColor {
-    from, to { color: hsl(324, 70%, 45%); }
-    10%      { color: hsl(360, 65%, 45%); }
-    20%      { color: hsl( 36, 80%, 45%); }
-    30%      { color: hsl( 72, 75%, 35%); }
-    40%      { color: hsl(108, 65%, 35%); }
-    50%      { color: hsl(144, 75%, 35%); }
-    60%      { color: hsl(180, 75%, 35%); }
-    70%      { color: hsl(216, 60%, 45%); }
-    80%      { color: hsl(252, 65%, 50%); }
-    90%      { color: hsl(288, 60%, 40%); }
+
+.form-container p {
+  margin-bottom: 20px;
+  color: #7f8c8d;
 }
-h1,
-h5,
-.b1 {
-  text-align: center;
+
+.form-container p a {
+  color: #27ae60;
   text-decoration: none;
-  font-weight: 700;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #34495e;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #27ae60;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
-}
-.forget {
-  float: right;
+  transition: background-color 0.3s;
 }
 
-.check {
-  margin-top: 1px;
-  float: left;
-}
-p, .b1 {
-  font-size: 12px;
-  text-decoration: none;
+button:hover {
+  background-color: #2ecc71;
 }
 
-.b1 {
-  background-color: rgb(53, 53, 53);
-  padding: 10px;
-  color: white;
-}
-.b1:hover {
-  background-color: rgb(0, 0, 0);
-  padding: 10px;
-  color: white;
+.social-signup {
+  text-align: center;
+  margin-top: 20px;
 }
 
+.social-signup p {
+  margin-bottom: 10px;
+  color: #7f8c8d;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icons a {
+  margin: 0 10px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}

@@ -16,12 +16,12 @@
     <div class="header">
         <img src="../logo/img1.jpg" alt="">
     </div>
+
 <div class="titrP">
-    <h1>Consultation des Produit</h1>
+    <h1>Consultation des Produit </h1>
 <button id="ajouter">Ajouter <i class="fa-solid fa-plus"></i></button>
 
 </div>
-   
 
     <div class="filtr">
             <div class="filtration">
@@ -73,7 +73,7 @@
                     $nombrepro = $con->query($nombre);
 
                     while ($nombre = $nombrepro->fetch_assoc()) {
-                        echo '<h4>Nombre de Produit:' . $nombre['total_produits'] . '</h4>';
+                        echo '<h4 class="nbr">Nombre de Produit:' . $nombre['total_produits'] . '</h4>';
                     }
                     ?>
             </Div>
@@ -114,8 +114,8 @@
         <hr>
         <table class="table">
             <tr>
-                <td class="tab-links active-link" onclick="openTab('ca')">Catégorie</td>
-                <td class="tab-links" onclick="openTab('pr')">Produit</td>
+                <td class="tab-links active-link" onclick="openTab('ca')" id="partie1">Catégorie</td>
+                <td class="tab-links" onclick="openTab('pr')" id="partie2">Produit</td>
             </tr>
         </table>
         <aside>
@@ -290,15 +290,17 @@
         </div>
         <div class="infP">
                     <h4 class='nam' id='Vnam'></h4>
-                    <h4 id=Vprix></h4>
+                    <h4 id=Vprix class="prix"></h4>
+                    <div class="desc">
                     <p id="Vdesc"></p>
-                    <h4 id="Vquan"></h4>
-                    <h4 id="Vage"></h4>
+                    </div>
+                    <h4 id="Vquan" class="quan"></h4>
+                    <h4 id="Vage" class="age"></h4>
                     <h4 class='date' id="Vdate"></h4>
                     <div class="button2">
-                           <button class="return">returner</button>
-   
-                               <button class="b1" >Poster</button>
+                        
+                        <button class="return">returner</button>
+                        <button class="b2" >Poster</button>
                            </div>
 
         </div>

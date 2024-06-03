@@ -18,7 +18,7 @@ if(isset($_POST['nom']) && isset($_POST['code'])) {
 
     if($result->num_rows > 0) {
         // Utilisateur authentifié, renvoie une réponse JSON
-        echo json_encode(['success' => true, 'redirect' => 'vue.php?megajoeut']);
+        echo json_encode(['success' => true, 'redirect' => 'mise.php?megajoeut']);
     } else {
         // Échec de l'authentification, renvoie une réponse JSON avec un message d'erreur pour le nom ou le mot de passe incorrect
         $errorMessage = [];
