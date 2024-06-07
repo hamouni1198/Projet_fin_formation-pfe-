@@ -2,10 +2,13 @@
 //affiche ferme popup ajouter
 document.getElementById('ajouter').addEventListener('click', function() {
     document.getElementById('ajouterp').style.display = 'flex';
+    history.pushState(null, null, window.location.href+'&Ajouter Produit');
 
       });
   document.getElementById('closePopup').addEventListener('click', function() {
     document.getElementById('ajouterp').style.display = 'none';
+    return url;
+
   });
  //close vue detail
   $('#vueC').click(function() {
@@ -142,9 +145,7 @@ $(document).ready(function(){
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    // Fonction exécutée si la requête AJAX réussit
             
-                    // Attendez un moment avant d'afficher le toast
                     setTimeout(function() {
                         // Afficher le toast
                         document.getElementById('succes').style.display = 'inline-flex';
@@ -280,43 +281,39 @@ $(document).ready(function() {
 $(document).ready(function() {
     $(document).on('click', '#b2', function() {
         var categoryId = $(this).data('categorie-id');
+        
         $.ajax({
-            url: 'delet.php?categorieID='+categoryId,
+            url: 'delet.php',
             method: 'POST',
             dataType: 'text', 
             data: {
                 categoryId: categoryId 
             },
             success: function(response) {
+                setTimeout(function() {
+                    // Display success toast
+                    $('#succes').css('display', 'inline-flex').css('zIndex', 1).addClass('succes');
+
                     setTimeout(function() {
-                        // Display the toast
-                        document.getElementById('succes').style.display = 'inline-flex';
-                        document.getElementById('succes').style.zIndex = '1';
-                        document.getElementById('succes').classList.add('succes');
-            
-                        setTimeout(function() {
-                            document.getElementById('succes').style.display = 'none';
-                            location.reload(''); 
-                        }, 1000);
-                    }, 100); 
+                        $('#succes').css('display', 'none');
+                        location.reload(); 
+                    }, 1000);
+                }, 100); 
             },  
             error: function(xhr, status, error) {
-            
+                setTimeout(function() {
+                    // Display error toast
+                    $('#error').css('display', 'inline-flex').css('zIndex', 1).addClass('error');
+
                     setTimeout(function() {
-                        document.getElementById('error').style.display = 'inline-flex';
-                        document.getElementById('error').style.zIndex = '1';
-                        document.getElementById('error').classList.add('error');
-            
-                        setTimeout(function() {
-                            document.getElementById('error').style.display = 'none';
-                            location.reload(); 
-                        }, 1000);
-                    }, 100); 
+                        $('#error').css('display', 'none');
+                        location.reload(); 
+                    }, 1000);
+                }, 100); 
             }
         });
     });
 });
-
 
 
 //modifie affiche
@@ -443,10 +440,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
 //recuperer donne vue detail
 $(document).ready(function(){
     $(document).on('click', '.vue', function() {
@@ -472,7 +465,9 @@ $(document).ready(function(){
                         $('#Vage').text(productData.age+"ans"); 
                         $('#Vdesc').text(productData.description); 
                         $('#Vdate').text(productData.date_creation);
-                       // Séparer la chaîne d'URL à chaque virgule
+                        $('#categorieIdVue').val(productData.id_categorie);
+                        $('#produitIdVue').val(productData.id_produit);
+
 var imgUrls = productData.img.split(',');
 
 // Récupérer le premier URL
@@ -480,7 +475,6 @@ var firstUrl = imgUrls[0];
 
 // Créer l'URL complète de l'image en utilisant le premier URL
 var imageUrl = '../images/' + firstUrl;
-console.log(imageUrl);
 // Définir l'image de fond de l'élément #Vimg
 $('#Vimg').css('background-image', 'url(' + imageUrl + ')');
 
@@ -499,4 +493,90 @@ $('#Vimg').css('background-image', 'url(' + imageUrl + ')');
     });
 });
 
+//poste produit
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("poste").addEventListener("click", function() {
+        var idProduitVue = document.getElementById("produitIdVue").value;
+        var idCategorieVue = document.getElementById("categorieIdVue").value;
+
+        var formData = new FormData();
+        formData.append("id_produit_vue", idProduitVue);
+        formData.append("id_categorie_vue", idCategorieVue);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "siteTraitement.php", true);
+        xhr.onload = function() {
+            console.log(xhr.responseText); // Affiche la réponse dans la console
+            
+            // Si la réponse est un succès, affiche le toast
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.error) {
+                    showAlert(response.error); // Affiche l'alerte avec le message d'erreur
+                } else {
+                    showToast(); // Affiche le toast de succès
+                }
+            }
+        };
+        xhr.send(formData);
+    });
+    
+    function showAlert(message) {
+        // Affiche une alerte avec le message spécifié
+        alert(message);
+    }
+    
+    function showToast() {
+        // Affiche le toast
+        document.getElementById('succes').style.display = 'inline-flex';
+        document.getElementById('succes').style.zIndex = '1';
+        document.getElementById('succes').classList.add('succes');
+    
+        // Masque le toast après 3 secondes (3000 millisecondes)
+        setTimeout(function() {
+            document.getElementById('succes').style.display = 'none';
+            location.reload(); // Recharge la page
+        }, 2000);
+    }
+});
+
+
+//delete post
+$(function() {
+    $(document).on('click', '#retirer', function() {
+        var produitId = document.getElementById("produitIdVue").value;
+        $.ajax({
+            url: 'deletePost.php',
+            method: 'POST',
+            dataType: 'text', 
+            data: { produitId: produitId },
+            success: function(response) {
+                console.log("Response: ", response); // Log the response
+                setTimeout(function() {
+                    let successElement = document.getElementById('succes');
+                    successElement.style.display = 'inline-flex';
+                    successElement.style.zIndex = '1';
+                    successElement.classList.add('succes');
+                    setTimeout(function() {
+                        successElement.style.display = 'none';
+                        location.reload();
+                    }, 1000);
+                }, 100); 
+            },  
+            error: function(xhr, status, error) {
+                console.error("Error: ", error); // Log the error
+                setTimeout(function() {
+                    let errorElement = document.getElementById('error');
+                    errorElement.style.display = 'inline-flex';
+                    errorElement.style.zIndex = '1';
+                    errorElement.classList.add('error');
+                    setTimeout(function() {
+                        errorElement.style.display = 'none';
+                        location.reload(); 
+                    }, 1000);
+                }, 100); 
+            }
+        });
+    });
+});
 

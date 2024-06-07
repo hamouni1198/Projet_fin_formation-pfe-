@@ -3,19 +3,37 @@ include('connect.php');
 $con = connect();
 
 if(isset($_POST['categoryId'])) {
-    $categorieID = $_POST['categoryId'];
+    // Sanitize input (optional if using prepared statements)
+    $categoryId = mysqli_real_escape_string($con, $_POST['categoryId']);
 
-    $categorieID = $con->real_escape_string($categorieID);
-    
-    $deleteQuery = "DELETE FROM categorie WHERE id_categorie = '$categorieID'";
-    $deleteResult = $con->query($deleteQuery);
+    // Begin transaction
+    mysqli_begin_transaction($con);
 
-    if ($deleteResult) {
-        echo "supprime avec succes"; 
-    } else {
-        echo "Erreur lors de la suppression de la catégorie: " . $con->error;
+    // Delete from produit_post
+    $deleteProduitPostQuery = "DELETE FROM produit_post WHERE id_categorie = '$categoryId'";
+    if (!mysqli_query($con, $deleteProduitPostQuery)) {
+        http_response_code(500); // Server error
+        echo "Erreur lors de la suppression de produit_post: " . mysqli_error($con);
+        mysqli_rollback($con);
+        exit; // Stop further execution
     }
+
+    // Delete from categorie
+    $deleteCategorieQuery = "DELETE FROM categorie WHERE id_categorie = '$categoryId'";
+    if (!mysqli_query($con, $deleteCategorieQuery)) {
+        http_response_code(500); // Server error
+        echo "Erreur lors de la suppression de la catégorie: " . mysqli_error($con);
+        mysqli_rollback($con);
+        exit; // Stop further execution
+    }
+
+    // Commit transaction
+    mysqli_commit($con);
+    echo "supprime avec succes";
+} else {
+    http_response_code(400); // Bad request
+    echo "categoryId is required";
 }
 
-$con->close();
+mysqli_close($con);
 ?>

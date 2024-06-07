@@ -193,7 +193,7 @@
 
 <div id="modifiep" class="popup">
         <div class="popup-content">
-            <i class="fa-solid fa-xmark"  id="close"></i>
+            <i class="fa-solid fa-xmark" id="close"></i>
             <h4 id="insertion" style="
     text-align: center;
     color: green;
@@ -289,6 +289,7 @@
         
         </div>
         <div class="infP">
+
                     <h4 class='nam' id='Vnam'></h4>
                     <h4 id=Vprix class="prix"></h4>
                     <div class="desc">
@@ -297,20 +298,16 @@
                     <h4 id="Vquan" class="quan"></h4>
                     <h4 id="Vage" class="age"></h4>
                     <h4 class='date' id="Vdate"></h4>
+                    <input  type="hidden" name="id_categorie_vue" id="categorieIdVue">
+                    <input  type="hidden" name="id_produit_vue" id="produitIdVue">
                     <div class="button2">
                         
-                        <button class="return">returner</button>
-                        <button class="b2" >Poster</button>
-                           </div>
-
+                        <button class="return" id="retirer">Retirer</button>
+                            <button class="b2" id="poste">Poster</button>
+                    </div>
         </div>
         </div>
-
-                 
-                         
-                          
-   
-                                   </section>
+</section>
 </div>
 
 <div class="succes" id="succes">
