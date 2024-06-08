@@ -2,12 +2,10 @@
 //affiche ferme popup ajouter
 document.getElementById('ajouter').addEventListener('click', function() {
     document.getElementById('ajouterp').style.display = 'flex';
-    history.pushState(null, null, window.location.href+'&Ajouter Produit');
 
       });
   document.getElementById('closePopup').addEventListener('click', function() {
     document.getElementById('ajouterp').style.display = 'none';
-    return url;
 
   });
  //close vue detail

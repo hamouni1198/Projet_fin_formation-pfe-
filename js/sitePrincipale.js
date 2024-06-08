@@ -61,34 +61,50 @@ const activeElemOnScroll = function () {
 }
 
 addEventOnElem(window, "scroll", activeElemOnScroll);
-
-
 $(document).ready(function() {
   $.ajax({
-      url: 'produitAffiche.php',
-      type: 'GET',
-      dataType: 'json',
-      success: function(response) {
+    url: 'produitAffiche.php',
+    type: 'GET',
+    dataType: 'json',
+    success: function(response) {
+      var produits = response.produits;
+      var output = ""; // Initialiser la variable pour stocker le contenu HTML
 
-          console.log(response); // Affiche les données récupérées dans la console
+      var i = 0;
+      while (i < produits.length) {
+        var produit = produits[i];
+        var imageSrc = "../images/" + produit.img; // Chemin de l'image
+        var nomProduit = produit.nam; // Nom du produit
 
-          var produits = response.produit;
-          if (produits.length > 0) {
-              for (var i = 0; i < produits.length; i++) {
-                  var produit = produits[i];
-                  var nom =document.getElementById('nom');
-                  nom.text=produit.nam;
-                  var img=document.getElementById('img1')
-                  var imgUrls = produit.img.split(',');
-                  var firstUrl = imgUrls[0];
-                  var imageUrl = '../images/' + firstUrl;
-                  var imgElement = $('<img>').attr('src', imageUrl).attr('alt', produit.nom); // Assumant que le nom de la colonne est 'nom'
-                  img.attr =imgElement
-              }
-          } 
-      },
-      error: function(xhr, status, error) {
-          console.error('Erreur AJAX : ' + status + ' - ' + error);
+        // Concaténer le HTML pour chaque produit
+        output += `<li class="scrollbar-item">
+        <div class="category-card">
+          <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
+            <img src="${imageSrc}" alt="${nomProduit}"
+              class="img-cover" id="img${i + 1}">
+          </figure>
+          <h3 class="h3">
+            <a href="#" class="card-title" id="abd${i + 1}">${nomProduit}</a>
+          </h3>
+          <div id="produitsContainer"></div>
+        </div>
+      </li>`;;
+        i++;
       }
+     
+      // Insérer le contenu HTML dans la section appropriée
+      $('#navbar').html(output);
+
+      // Redimensionner les images après leur chargement
+    
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      let errorMsg = `<tr><td colspan='4'>Erreur de chargement des produits: ${textStatus}</td></tr>`;
+      if (errorThrown) {
+        errorMsg += `<tr><td colspan='4'>Détails de l'erreur: ${errorThrown}</td></tr>`;
+      }
+      $('#resultats tbody').html(errorMsg);
+    }
   });
 });
+

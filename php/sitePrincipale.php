@@ -20,9 +20,8 @@
 </head>
 
 <body id="top">
-  <!-- 
-    - #HEADER
-  -->    <div id="resultat"></div>
+
+ 
 
 
   <header class="header" data-header>
@@ -84,7 +83,8 @@
 
 
 
-
+  
+</div>
 
   <main>
     <article>
@@ -111,15 +111,16 @@
 
 
 
-
+      <ul class="has-scrollbar" id="navbar">
+  <!-- Les nouveaux éléments de catégorie seront ajoutés ici par JavaScript -->
+</ul>
       <!-- 
         - #CATEGORY
       -->
-
       <section class="section category" aria-label="category">
-        <div class="container">
+        <div class="container" >
 
-          <h2 class="h2 section-title">
+          <h2 class="h2 section-title" id="adresrr">
             <span class="span">Top</span> categories
           </h2>
 
@@ -134,7 +135,7 @@
                 </figure>
 
                 <h3 class="h3">
-                  <a href="#" class="card-title" id="name">Cat Food</a>
+                  <a href="#" class="card-title" id="abd">Cat Food</a>
                 </h3>
                 <div id="produitsContainer"></div>
 
