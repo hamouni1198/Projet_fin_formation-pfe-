@@ -89,7 +89,6 @@
                 <th>prix</th>
                 <th>age</th>
                 <th>Date-Creation</th>
-                <th>Etat</th>
                 <th>Action</th>
 
             </tr>
@@ -132,6 +131,8 @@
                         <option value=""></option>
                         <option value="garcon">garcon</option>
                         <option value="fille">fille</option>
+                        <option value="fille-garcon">fille-garcon</option>
+
                     </select>
                     </td>
                 </tr>
@@ -205,8 +206,8 @@
         <hr>
         <table class="table">
             <tr>
-                <td class="tab-links active-link" onclick="openTabEdite('categorie')">Catégorie</td>
-                <td class="tab-links" onclick="openTabEdite('produit')">Produit</td>
+                <td class="tab-links active-link" onclick="openTabEdite('categorie') " id="part1">Catégorie</td>
+                <td class="tab-links" onclick="openTabEdite('produit')" id="part2">Produit</td>
             </tr>
         </table>
         <aside>

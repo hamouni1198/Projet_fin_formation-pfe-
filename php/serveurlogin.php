@@ -1,6 +1,8 @@
 <?php
+header('Content-Type: application/json');
+
 // Connexion à la base de données MySQL
-include ('connect.php');
+include('connect.php');
 $con = connect();
 
 // Vérification des informations de connexion
@@ -36,5 +38,7 @@ if(isset($_POST['nom']) && isset($_POST['code'])) {
     
     // Fermer la connexion
     $con->close();
+} else {
+    echo json_encode(['success' => false, 'message' => 'Requête invalide.']);
 }
 ?>

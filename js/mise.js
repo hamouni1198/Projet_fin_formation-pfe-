@@ -38,7 +38,7 @@ function openTab(tabName) {
         precedentBtn.style.display = 'block';
         suivantBtn.style.display = 'none';
         enregistreBtn.style.display = 'block';
-        button.style.left='1008px'
+        button.style.left='926px'
         partie1.style.color='black';
         partie2.style.color='rgb(190 184 51)';
 
@@ -49,7 +49,7 @@ function openTab(tabName) {
         precedentBtn.style.display = 'none';
         suivantBtn.style.display = 'block';
         enregistreBtn.style.display = 'none';
-        button.style.left='1119px';
+        button.style.left='1045px';
         partie1.style.color='rgb(190 184 51)';
         partie2.style.color='black';
 
@@ -69,8 +69,8 @@ function openTabEdite(tabName) {
     var precedentBtn = document.getElementById('preceden');
     var enregistreBtn = document.getElementById('enregistrer');
     var button = document.getElementById('butt')
-    var partie1 =document.getElementById('partie1')
-    var partie2 =document.getElementById('partie2')
+    var partie1 =document.getElementById('part1')
+    var partie2 =document.getElementById('part2')
     
 
     if (tabName === 'produit') {
@@ -79,8 +79,8 @@ function openTabEdite(tabName) {
         precedentBtn.style.display = 'block';
         suivantBtn.style.display = 'none';
         enregistreBtn.style.display = 'block';
-        button.style.left='1008px'
-        partie1.style.color='black';
+        button.style.left='926px'
+    partie1.style.color='black';
         partie2.style.color='rgb(190 184 51)';
 
     } else if (tabName === 'categorie') {
@@ -89,7 +89,7 @@ function openTabEdite(tabName) {
         precedentBtn.style.display = 'none';
         suivantBtn.style.display = 'block';
         enregistreBtn.style.display = 'none';
-        button.style.left='1119px';
+        button.style.left='1045px';
         partie1.style.color='rgb(190 184 51)';
         partie2.style.color='black';
     }
@@ -220,7 +220,7 @@ $(document).ready(function() {
                 var output = "";
                 // Construction du contenu HTML à partir des données reçues
                 for (var i = 0; i < data.length; i++) {
-                    output += "<tr><input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'><input type='hidden' name='produit_id' value='" + data[i].id_produit + "'><td>" + data[i].typ_cat + "</td><td>" + data[i].sexe + "</td><td>" + data[i].nam + "</td><td>"  + data[i].prix + "</td><td>" + data[i].age +"</td><td>" + data[i].date_creation+"</td id='etat'><td>"  + "</td><td class='bu'><button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "'><i class='fa-solid fa-trash-can'></i></button><button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'><i class='fa-solid fa-eye'></i> </button><button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'><i class='fas fa-edit'></i> </button></td></tr>";
+                    output += "<tr><input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'><input type='hidden' name='produit_id' value='" + data[i].id_produit + "'><td>" + data[i].typ_cat + "</td><td>" + data[i].sexe + "</td><td>" + data[i].nam + "</td><td>"  + data[i].prix + "</td><td>" + data[i].age +"</td><td>" + data[i].date_creation+"</td id='etat'><td class='bu'>"  + "<button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "'><i class='fa-solid fa-trash-can'></i></button><button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'><i class='fa-solid fa-eye'></i> </button><button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'><i class='fas fa-edit'></i> </button></td></tr>";
                 }
                 // Injection du contenu HTML dans l'élément avec l'ID 'resultats'
                 $('#resultats').html(output);
@@ -262,7 +262,7 @@ $(document).ready(function() {
             var output = "";
             if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
-                output += "<tr><input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'><input type='hidden' name='produit_id' value='" + data[i].id_produit + "'><td>" + data[i].typ_cat + "</td><td>" + data[i].sexe + "</td><td>" + data[i].nam + "</td><td>"  + data[i].prix + "</td><td>" + data[i].age +"</td><td>" + data[i].date_creation+"</td id='etat'><td>"  + "</td><td class='bu'><button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "'><i class='fa-solid fa-trash-can'></i></button><button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'><i class='fa-solid fa-eye'></i> </button><button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'><i class='fas fa-edit'></i> </button></td></tr>";
+                output += "<tr><input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'><input type='hidden' name='produit_id' value='" + data[i].id_produit + "'><td>" + data[i].typ_cat + "</td><td>" + data[i].sexe + "</td><td>" + data[i].nam + "</td><td>"  + data[i].prix + "</td><td>" + data[i].age +"</td><td>" + data[i].date_creation+"</td id='etat'><td class='bu'>"  + "<button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "'><i class='fa-solid fa-trash-can'></i></button><button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'><i class='fa-solid fa-eye'></i> </button><button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'><i class='fas fa-edit'></i> </button></td></tr>";
 
                 ;
             }
@@ -436,13 +436,15 @@ $(document).ready(function(){
    
 });
 
-
-
-//recuperer donne vue detail
-$(document).ready(function(){
+//vue
+$(document).ready(function() {
+    // Bind a click event to elements with the class 'vue'
     $(document).on('click', '.vue', function() {
+        // Get category and product IDs from the closest row
         var categorieId = $(this).closest('tr').find('input[name="categorie_id"]').val();
         var produitId = $(this).closest('tr').find('input[name="produit_id"]').val();
+
+        // Send an AJAX request to 'vuetraitement.php'
         $.ajax({
             url: 'vuetraitement.php',
             method: 'POST',
@@ -452,37 +454,39 @@ $(document).ready(function(){
                 'id_categorie': categorieId
             },
             success: function(response) {
-                    var data = JSON.parse(response);
+                // Parse the JSON response
+                var data = JSON.parse(response);
+
+                // Check if data is available
+                if (data.length > 0) {
+                    var productData = data[0];
+
+                    // Display the detailed view
                     $('#vueD').css('display', 'flex');
 
-                    if(data.length > 0) {
-                        var productData = data[0];
-                        $('#Vnam').text(productData.nam); 
-                        $('#Vquan').text("Quantité:"+productData.stock); 
-                        $('#Vprix').text(productData.prix+"Dh"); 
-                        $('#Vage').text(productData.age+"ans"); 
-                        $('#Vdesc').text(productData.description); 
-                        $('#Vdate').text(productData.date_creation);
-                        $('#categorieIdVue').val(productData.id_categorie);
-                        $('#produitIdVue').val(productData.id_produit);
+                    // Populate the details in the respective elements
+                    $('#Vnam').text(productData.nam); 
+                    $('#Vquan').text("Quantité: " + productData.stock); 
+                    $('#Vprix').text(productData.prix + " Dh"); 
+                    $('#Vage').text(productData.age + " ans"); 
+                    $('#Vdesc').text(productData.description); 
+                    $('#Vdate').text(productData.date_creation);
+                    $('#categorieIdVue').val(productData.id_categorie);
+                    $('#produitIdVue').val(productData.id_produit);
 
-var imgUrls = productData.img.split(',');
+                    // Get the first image URL from the comma-separated list
+                    var imgUrls = productData.img.split(',');
+                    var firstUrl = imgUrls[0].trim(); // Trim to remove any extra spaces
+                    var imageUrl = '../images./' + firstUrl;
 
-// Récupérer le premier URL
-var firstUrl = imgUrls[0];
+                    // Log the constructed image URL to debug
+                    console.log("Image URL:", imageUrl);
 
-// Créer l'URL complète de l'image en utilisant le premier URL
-var imageUrl = '../images/' + firstUrl;
-// Définir l'image de fond de l'élément #Vimg
-$('#Vimg').css('background-image', 'url(' + imageUrl + ')');
-
-                        $('#Vimg').css('background-image', 'url(' + imageUrl + ')');
-
-
-                    } else {
-                        console.log("No data found");
-                    }
-                
+                    // Set the background image of the element with id 'Vimg'
+                    $('#Vimg').css('background-image', 'url(' + imageUrl + ')');
+                } else {
+                    console.log("No data found");
+                }
             },
             error: function(xhr, status, error) {
                 console.error("AJAX Error: " + status, error);
@@ -577,4 +581,6 @@ $(function() {
         });
     });
 });
+
+
 

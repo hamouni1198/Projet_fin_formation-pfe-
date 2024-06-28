@@ -1,11 +1,5 @@
 'use strict';
 
-
-
-/**
- * add event on element
- */
-
 const addEventOnElem = function (elem, type, callback) {
   if (elem.length > 1) {
     for (let i = 0; i < elem.length; i++) {
@@ -61,50 +55,153 @@ const activeElemOnScroll = function () {
 }
 
 addEventOnElem(window, "scroll", activeElemOnScroll);
+
+
+
+//affiche produit
+
 $(document).ready(function() {
+  // AJAX call to fetch products and display them
   $.ajax({
     url: 'produitAffiche.php',
     type: 'GET',
     dataType: 'json',
     success: function(response) {
       var produits = response.produits;
-      var output = ""; // Initialiser la variable pour stocker le contenu HTML
+      var output = "";
 
-      var i = 0;
-      while (i < produits.length) {
-        var produit = produits[i];
-        var imageSrc = "../images/" + produit.img; // Chemin de l'image
-        var nomProduit = produit.nam; // Nom du produit
+      produits.forEach(function(produit) {
+        var imageUrls = produit.img.split(',');
+        var nomProduit = produit.nam.trim();
+        var prix = produit.prix;
 
-        // Concaténer le HTML pour chaque produit
-        output += `<li class="scrollbar-item">
-        <div class="category-card">
-          <figure class="card-banner img-holder" style="--width: 330; --height: 300;">
-            <img src="${imageSrc}" alt="${nomProduit}"
-              class="img-cover" id="img${i + 1}">
-          </figure>
-          <h3 class="h3">
-            <a href="#" class="card-title" id="abd${i + 1}">${nomProduit}</a>
-          </h3>
-          <div id="produitsContainer"></div>
-        </div>
-      </li>`;;
-        i++;
-      }
-     
-      // Insérer le contenu HTML dans la section appropriée
-      $('#navbar').html(output);
+        var imageSrcDefault = imageUrls[0] ? imageUrls[0].trim() : '';
+        var imageSrcHover = imageUrls[1] ? imageUrls[1].trim() : '';
 
-      // Redimensionner les images après leur chargement
-    
+        output += `
+        <input type='hidden' name='categorie_id' value='${produit.id_categorie}'>
+        <input type='hidden' name='produit_id' value='${produit.id_produit}'>
+          <li>
+            <div class="product-card">
+              <div class="card-banner img-holder" style="--width: 360; --height: 360;">
+                <img src="../images/${imageSrcDefault}" width="500" height="500" loading="lazy" alt="${nomProduit}" class="img-cover default" id='imgP' data-categorie-id="${produit.id_categorie}" data-produit-id="${produit.id_produit}">
+                <img src="../images/${imageSrcHover}" width="360" height="360" loading="lazy" alt="${nomProduit}" class="img-cover hover" id='imgP' data-categorie-id="${produit.id_categorie}" data-produit-id="${produit.id_produit}">
+                <button class="card-action-btn" aria-label="add to cart" title="Add To Cart">
+                  <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+              <div class="card-content">
+                <div class="wrapper">
+                  <div class="rating-wrapper">
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <ion-icon name="star" aria-hidden="true"></ion-icon>
+                  </div>
+                  <span class="span">(1)</span>
+                </div>
+                <h3 class="h3">
+                  <a href="#" class="card-title">${nomProduit}</a>
+                </h3>
+                <data class="card-price" value="${prix}">${prix} MAD</data>
+              </div>
+            </div>
+          </li>`;
+      });
+
+      $('#navbar').html(output); // Display products in the designated HTML element
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      let errorMsg = `<tr><td colspan='4'>Erreur de chargement des produits: ${textStatus}</td></tr>`;
-      if (errorThrown) {
-        errorMsg += `<tr><td colspan='4'>Détails de l'erreur: ${errorThrown}</td></tr>`;
-      }
-      $('#resultats tbody').html(errorMsg);
+      console.error('AJAX Error:', textStatus, errorThrown);
+      var errorMsg = `<li>Erreur de chargement des produits: ${textStatus}</li>`;
+      $('#navbar').html(errorMsg);
     }
   });
+
+  // Click event handler for product images
+  $(document).ready(function(){
+    $(document).on('click', '#imgP', function() {
+      var categorieId = $(this).data('categorie-id');
+      var produitId = $(this).data('produit-id');
+    
+
+        $.ajax({
+            url: 'TraitementVueProduit.php',
+            method: 'POST',
+            data: {
+                'click_edite': true,
+                'id_produit': produitId,
+                'id_categorie': categorieId
+            },
+            success: function(response) {
+                // Rediriger vers la page vueProduit avec les données reçues
+                window.location.href = 'vueProduit.php?id_produit=' + produitId + '&id_categorie=' + categorieId;
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error: " + status, error);
+            }
+        });
+    });
+});
+});
+
+//login
+document.getElementById('user').addEventListener('click', function() {
+  // Add a class to trigger the transition
+  document.getElementById('login').classList.add('show');
+
+});
+
+
+
+
+//login
+$(document).ready(function() {
+  $(document).on('click', '#loginUser', function(e) {
+    e.preventDefault(); // Empêche la soumission du formulaire par défaut
+    
+    if (validateForm()) {
+      var nom = $('#username').val();
+      var email = $('#Email').val();
+      var tel = $('#tel').val();
+
+      console.log('Nom:', nom);
+      console.log('Email:', email);
+      console.log('Téléphone:', tel);
+
+      $.ajax({
+        url: 'adduser.php',
+        method: 'POST',
+        dataType: 'text',
+        data: {
+          tel: tel,
+          email: email,
+          nom: nom,
+        },
+        success: function(response) {
+          console.log(response);
+          $('#login').hide(); // Masquer la popup
+        },
+        error: function(xhr, status, error) {
+          console.error(error);
+        }
+      });
+    }
+  });
+
+  function validateForm() {
+    var isValid = true;
+    $('#loginCl input').each(function(){
+      if ($(this).val() === '') {
+        isValid = false;
+        return false; 
+      }
+    });
+    if (!isValid) {
+      alert('Veuillez remplir tous les champs.');
+    }
+    return isValid;
+  }
 });
 
