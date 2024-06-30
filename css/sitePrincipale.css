@@ -160,6 +160,27 @@
   /*-----------------------------------*\
     #REUSED STYLE
   \*-----------------------------------*/
+  .panier{
+    max-width: 683px;
+    background-color: white;
+    border-radius: 9px;
+    position: absolute;
+    top: 72px;
+    left: 1056px;
+    max-height: 424px;
+  }
+  .panier.confirmation{
+    display: flex;
+  }
+  .panier.confirmation.infoPanier h1{
+    font-size: 16px;
+
+  }
+  .panier.confirmation.infoPanier.nbr{
+    font-size: 14px;
+
+  }
+
   .login {
     width: 100%;
     max-width: 400px;

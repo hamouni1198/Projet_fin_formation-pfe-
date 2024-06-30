@@ -33,11 +33,33 @@
     </form>
   </div>
 </div>
+<!-- 
+        - #panier
+      -->
 
 <div class="panier">
+  <div class="confirmation">
+  <div class="infoPanier">
+<h1>Votre Panier</h1>
+<h2 class="nbr">nombre d'article</h2>
+  </div>
+  <div class="buttonP">
+  <button>confirmer commande</button>
+  </div>
+  </div>
+  <div class="produit">
+  <div class="imgPV">
 
+  </div>
+  <div class="infoImage">
+    <h1>nom produit</h1>
+    <h4>quantité</h4>
+  </div>
+  <div class="prix">
+    <h2>prix de produit</h2>
+  </div>
+  </div>
 </div>
-
 <header class="header" data-header>
     <div class="container">
 

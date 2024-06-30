@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 });
 
-
+//affiche vue produit
 $(document).ready(function() {
   
   var urlParams = new URLSearchParams(window.location.search);
@@ -37,7 +37,7 @@ $(document).ready(function() {
           $('#quantite').text( response.stock);
           $('#quantity').attr('data-available-quantity', response.stock);
           $('#quantity').attr('data-minimum-quantity', 1);
-          $('#produitId').text(response.id_produit);
+          $('#produitId').val(response.id_produit);
 
 
 
@@ -125,7 +125,7 @@ document.getElementById('quantite').addEventListener('click', function(event) {
 
 
 
-
+//envoyer au panier
 $(document).ready(function() {
   $('#addToCart').on('click', function(e) {
     e.preventDefault();
@@ -133,7 +133,7 @@ $(document).ready(function() {
       var username = $('#username').val();
       var email = $('#email').val();
       var tel = $('#tel').val();
-      var productId = $('#produitId').val();
+      var productId = document.getElementById("produitId").value;
       var quantity = parseInt($('#quantity').val(), 10);
       var availableQuantity = parseInt($('#quantity').data('available-quantity'), 10);
 
@@ -163,7 +163,7 @@ $(document).ready(function() {
             $('#succes').css('display', 'flex');
             // Recharger la page après 1 seconde
             setTimeout(function() {
-              location.reload();
+              window.location.href = 'sitePrincipale.php';
             }, 1000);
           },
           error: function(xhr, status, error) {
@@ -180,14 +180,32 @@ $(document).ready(function() {
   function validateForm() {
     var isValid = true;
     $('#productForm #username,#productForm #email,#productForm #tel').each(function() {
-      if ($(this).val() === '') {
-        isValid = false;
-        alert('Veuillez remplir tous les champs.');
-        return false; // Arrêter la boucle each() si un champ est vide
-      }
+        if ($(this).val() === '') {
+            isValid = false;
+            alert('Veuillez remplir tous les champs.');
+            return false; // Arrêter la boucle each() si un champ est vide
+        }
     });
+
+    // Validation du format de l'email
+    var email = $('#email').val();
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        isValid = false;
+        alert('Veuillez entrer un email valide.');
+    }
+
+    // Validation du format du téléphone
+    var tel = $('#tel').val();
+    var telPattern = /^\d+$/; // Modifiez ce pattern selon le format de téléphone souhaité
+    if (!telPattern.test(tel)) {
+        isValid = false;
+        alert('Veuillez entrer un numéro de téléphone valide.');
+    }
+
     return isValid;
-  }
+}
+
 
   
 });
