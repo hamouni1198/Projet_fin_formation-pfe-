@@ -77,7 +77,7 @@ $(document).ready(function() {
 
         var imageSrcDefault = imageUrls[0] ? imageUrls[0].trim() : '';
         var imageSrcHover = imageUrls[1] ? imageUrls[1].trim() : '';
-
+        
         output += `
         <input type='hidden' name='categorie_id' value='${produit.id_categorie}'>
         <input type='hidden' name='produit_id' value='${produit.id_produit}'>
@@ -146,15 +146,10 @@ $(document).ready(function() {
 });
 });
 
-//login
+//ouvrir login
 document.getElementById('user').addEventListener('click', function() {
-  // Add a class to trigger the transition
   document.getElementById('login').classList.add('show');
-
 });
-
-
-
 
 //login
 $(document).ready(function() {
@@ -182,6 +177,7 @@ $(document).ready(function() {
         success: function(response) {
           console.log(response);
           $('#login').hide(); // Masquer la popup
+window.location.reload()
         },
         error: function(xhr, status, error) {
           console.error(error);
@@ -205,3 +201,90 @@ $(document).ready(function() {
   }
 });
 
+//ouvrire panier
+document.getElementById('panieB').addEventListener('click', function() {
+  document.getElementById('Pan').style.display = 'flex';
+
+    });
+document.getElementById('PanierC').addEventListener('click', function() {
+  document.getElementById('Pan').style.display = 'none';
+
+});
+
+
+
+//affichage panier
+$(document).ready(function() {
+  $('#panieB').click(function() {
+      $.ajax({
+          url: 'affichagePanier.php',
+          method: 'GET',
+          dataType: 'json',
+          success: function(response) {
+              if (response.produits) {
+                  var produits = response.produits;
+                  var tableBody = $('#resultats');
+                  var total = 0; // Initialize total variable
+
+                  tableBody.empty();
+                  produits.forEach(function(produit) {
+                      var prix = produit.prix * produit.quantite;
+                      total += parseFloat(prix); // Add each product's price to the total
+
+                      var row = $('<tr></tr>');
+                      var imgUrls = produit.img.split(',');
+                      var firstUrl = imgUrls[0].trim(); // Trim to remove any extra spaces
+                      var imageUrl = '../images/' + firstUrl; // Corrected path
+
+                      row.append($('<td id="img"></td>').css('background-image', 'url(' + imageUrl + ')'));
+                      row.append($('<td></td>').text(produit.nam)); // Corrected property name
+                      row.append($('<td></td>').html(produit.prix));
+                      row.append($('<td></td>').text(produit.quantite));
+                      row.append($('<td id="prix"></td>').text(prix));
+                      row.append($('<td></td>').html('<button class="b2" id="delete" data-produit-id="' + produit.id_produit + '"><i class="fa-solid fa-trash-can"></i></button>'));
+
+                      tableBody.append(row);
+                  });
+
+                  $('#total').text(total.toFixed(2)+"DH"); // Display total with 2 decimal places
+
+                  $('#produitsTable').show();
+                  $('#nbProduit').text(response.nbProduit)
+
+                  console.log("Nombre de produits dans le panier:", response.nbProduit);
+              } else {
+                  console.log('Aucun produit trouvé.');
+              }
+          },
+          error: function(xhr, status, error) {
+              console.error('Erreur AJAX:', status, error);
+              console.log(xhr.responseText); // Log server response for debugging
+          }
+      });
+  });
+});
+
+
+
+//affiche nbproduit
+$(document).ready(function() {
+      $.ajax({
+          url: 'affichagePanier.php',
+          method: 'GET',
+          dataType: 'json',
+          success: function(response) {
+              if (response.produits) {
+                  $('#nbProduit').text(response.nbProduit)
+
+                  console.log("Nombre de produits dans le panier:", response.nbProduit);
+              } else {
+                  console.log('Aucun produit trouvé.');
+              }
+          },
+          error: function(xhr, status, error) {
+              console.error('Erreur AJAX:', status, error);
+              console.log(xhr.responseText); // Log server response for debugging
+          }
+      });
+  
+});

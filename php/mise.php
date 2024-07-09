@@ -103,6 +103,8 @@
 
     <div id="ajouterp" class="popup">
         <div class="popup-content">
+        <p id="urlDisplay"></p>
+
             <i class="fa-solid fa-xmark"  id="closePopup"></i>
             <h4 id="insertion" style="
     text-align: center;

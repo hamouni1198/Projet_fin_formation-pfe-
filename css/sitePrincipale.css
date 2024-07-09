@@ -7,8 +7,280 @@
 
   */
 
+  .panier {
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    z-index: 5;
+    }
+  .panier .product-container {
+    background-color: rgb(255 255 255);
+    max-width: 731px;
+    max-height: 435px;
+    border-radius: 25px;
+    border: 1px #d1d1d1 solid;
+    box-shadow: 2px -3px 14px 1px #d4d4d4;
+    position: absolute;
+    z-index: 1;
+    left: 54%;
+    top: 10%;
+  }
+ 
+  .panier .product-container i{
+    display: flex;
+    justify-content: end;
+    font-size: 29px;
+    position: relative;
+    right: 13px;
+    top: 9px;
+    cursor: pointer;
+    }
+    .panier .product-container h3{
+      text-align: center;
+      font-family: 'poppins';
+      font-size: 22px;
+    letter-spacing: 4px;
+    color: #5c5c5c;
+    margin: 22px;
+        }
+      .panier .product-container .produit{
+        display: flex;
+        gap: 6px;
+      }
+    
+      
+      .panier .product-container .produit .infP{
+        width: 100%;
+        margin-top: 35px;
+      }
+      .panier .product-container .produit .infP h4{
+        font-family: "Heebo", sans-serif;
+        font-size: 25px;
+      line-height: 38px;
+      font-weight: 600;
+      margin: 0;
+      color: black;
+      }
+      .panier .product-container .produit .infP #Vprix{
+        font-size: 23px;
+  font-weight: 800;
+  line-height: normal;
+  margin-top: 17px;
+  font-family: monospace;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+
+        }
+        .panier .product-container .produit .infP #Vdesc{
+          word-wrap: break-word;
+          height: 137px;
+        margin-top: 0px;
+       }
+      
+       .panier .product-container .produit .infP p{
+        color: #000000;
+  font-family: 'PT Sans';
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+  overflow-y: auto;
+
+       }
+      
+      .panier .product-container .produit .infP .date{
+        text-align: right;
+        text-align: right;
+  font-size: 12px;
+  font-family: 'PT Sans', sans-serif;
+        }
+        .panier .product-container .produit .infP .quan{
+          font-size: 23px;
+          font-weight: 800;
+          line-height: normal;
+          font-family: monospace;
+          text-transform: uppercase;
+          text-align: right;
+        }
+        .panier .product-container .produit .infP .age{
+          font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  font-family: serif;
+  margin-bottom: 26px;
+        }
+        .panier .product-container .produit .infP .nam{
+          text-align: center;
+  font-size: 24px;
+  font-weight: 300;
+  font-family: none;
+  letter-spacing: 3px;
+  text-decoration: underline;
+        }
+        .panier .product-container .produit .infP .button2{
+          display: flex;
+  
+  left: 129px;
+  justify-content: center;
+  gap: 49px
+        }
+        .panier .product-container .produit .infP .button2 .b2{
+          background: #fff767;
+          color: #000000;
+          border-radius: 10px;
+          width: 122px;
+          height: 40px;
+          cursor: pointer;
+          font-weight: 700;
+          letter-spacing: 1px;
+          border: 1px solid #acac1482;
+        }
+        
+        .panier .product-container .produit .infP .button2 .return{
+          background: #fcf000;
+          color: #000000;
+          border-radius: 10px;
+          width: 122px;
+          height: 40px;
+          cursor: pointer;
+          font-weight: 700;
+          letter-spacing: 1px;
+          border: 1px solid #acac1482;
+        }
 
 
+  
+  .panier .popup-content{
+    background-color: rgb(255 255 255);
+    width: 1002px;
+    height: 576px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 25px;
+    border: 2px solid #dddddd;
+    box-shadow: 2px -3px 14px 1px #d4d4d4;
+  }
+  .panier .popup-content .table #partie1{
+    color: rgb(190 184 51);
+  }
+  #modifiep .popup-content .table #part1{
+    color: rgb(190 184 51);
+  }
+  .popup .popup-content i{
+    display: flex;
+    justify-content: end;
+    font-size: 29px;
+    position: relative;
+    right: 13px;
+    top: 9px;
+    cursor: pointer;
+
+    }
+    .popup .popup-content h3{
+      text-align: center;
+      font-family: 'poppins';
+      font-size: 22px;
+    letter-spacing: 4px;
+    color: #5c5c5c;
+      }
+       
+      .popup .popup-content .table{
+        display: flex;
+        justify-content: center;
+      }
+      .popup .popup-content table{
+        display: flex;
+        justify-content: center;
+
+      }
+      .table-responsive{
+        display: inline-block;
+        max-height: 501px;
+        width: 100%;
+        overflow-y: auto;
+        position: relative;
+
+      }
+      .table-responsive .table{
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 5px 10px #e1e5ee;
+        background-color: white;
+        text-align: left;
+        position: relative;
+      }
+      .table-responsive .table .bu{
+        display: flex;
+        justify-content: left;
+        gap: 10px;
+
+      }
+      .table-responsive .table .desc{
+        overflow-y: auto;
+        width: 193px;
+        display: flex;
+        font-size: 12px;
+        padding: 0px;
+      }
+      .table-responsive .table .bu button{
+        font-size: 24px;
+
+      }
+      .table-responsive .table .bu .b2{
+            color: #ff4343;
+            ;
+            background: none;
+            border: none;
+      }
+      .table-responsive .table .bactive .active{
+        color: rgb(237 237 237);
+        background: green;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 18px 5px 17px;
+  }
+      .table-responsive .table .bu .vue{
+        color: #f06d0f;
+        background: none;
+        border: none;
+  }
+      .table-responsive .table .bu .b3{
+        color: #4fb44f;
+        background: none;
+        border: none;
+  }
+      .table-responsive .table thead{
+        position: sticky;
+      top: 0;
+      box-shadow: 0 5px 10px #e1e5ee;
+      background-color: rgb(255, 255, 255);
+
+      }
+      .table-responsive .table #resultats #img{
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .table-responsive .table thead th{
+        padding: 13px 0px 13px 55px;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        font-size: 1.7rem;
+        font-weight: 600;
+      }
+      .table-responsive .table td{
+        padding: 28px 0px 28px 55px;
+      }
+   
+      .table-responsive .table tr:nth-child(even) {
+        background-color: #f4f6fb;
+      }
 
 
   /*-----------------------------------*\
@@ -160,26 +432,7 @@
   /*-----------------------------------*\
     #REUSED STYLE
   \*-----------------------------------*/
-  .panier{
-    max-width: 683px;
-    background-color: white;
-    border-radius: 9px;
-    position: absolute;
-    top: 72px;
-    left: 1056px;
-    max-height: 424px;
-  }
-  .panier.confirmation{
-    display: flex;
-  }
-  .panier.confirmation.infoPanier h1{
-    font-size: 16px;
-
-  }
-  .panier.confirmation.infoPanier.nbr{
-    font-size: 14px;
-
-  }
+  
 
   .login {
     width: 100%;
@@ -238,9 +491,7 @@
     transition: background-color 0.3s ease-in-out;
   }
 
-  button:hover {
-    background-color: #ff6600; /* Warna button saat hover */
-  }
+ 
 
 
 

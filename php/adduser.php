@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('connect.php');
 $con = connect();
 
@@ -13,15 +14,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $nom = $_POST['nom'];
     }
 
-    $stmt = $con->prepare("INSERT INTO client (nom, email, tel) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $nom, $email, $tel);
+    // Vérifier si le client existe déjà
+    $check_stmt = $con->prepare("SELECT id_client FROM client WHERE nom = ? AND email = ? AND  tel = ?");
 
-    if ($stmt->execute()) {
-        echo "New record created successfully";
+    $check_stmt->bind_param("sss", $nom, $email,$tel);
+    $check_stmt->execute();
+    $check_stmt->store_result();
+    
+    if ($check_stmt->num_rows > 0) {
+        // Le client existe déjà
+        $check_stmt->bind_result($client_id);
+        $check_stmt->fetch();
+        $_SESSION['id_client'] = $client_id;
+        $_SESSION['client_nom'] = $nom;
+        echo "Client already exists. Client ID: " . $client_id;
     } else {
-        echo "Error: " . $stmt->error;
+        // Insérer un nouveau client
+        $stmt = $con->prepare("INSERT INTO client (nom, email, tel) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $nom, $email, $tel);
+
+        if ($stmt->execute()) {
+            // Récupérer l'ID du client inséré
+            $client_id = $con->insert_id;
+            // Stocker l'ID du client dans la session
+            $_SESSION['id_client'] = $client_id;
+            $_SESSION['client_nom'] = $nom; // Vous pouvez aussi stocker le nom du client si nécessaire
+            echo "New record created successfully. Client ID: " . $client_id;
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
     }
-    $stmt->close();
+    $check_stmt->close();
 } else {
     echo "Invalid input.";
 }

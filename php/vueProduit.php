@@ -15,8 +15,7 @@
   </head>
 
   <body>
-  <form id="productForm">
-
+  
   <main class="container">
     <div class="left-column">
     <img data-image="black" id="imageProduit" src="" alt="Product Image">
@@ -77,20 +76,14 @@
         </div>
       </div>
  
-      <div class="login" id="login">
-  <div class="card">
-      <input type="text" id="username" name="username" placeholder="Username" required>
-      <input type="email" id="email" name="email" placeholder="Email" required>
-      <input type="tel" id="tel" name="tel" placeholder="Tel" required>
-  </div>
-</div>
+  
+ 
       <!-- Product Pricing -->
       <div class="product-price">
         <button class="cart-btn" id="addToCart">Ajouter au Panier</button>
       </div>
     </div>
   </main>
-  </form>
   <div class="succes" id="succes">
     <div class="icon">
     <i class="fa-solid fa-check"></i>

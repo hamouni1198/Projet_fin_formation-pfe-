@@ -262,7 +262,7 @@ $(document).ready(function() {
             var output = "";
             if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
-                output += "<tr><input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'><input type='hidden' name='produit_id' value='" + data[i].id_produit + "'><td>" + data[i].typ_cat + "</td><td>" + data[i].sexe + "</td><td>" + data[i].nam + "</td><td>"  + data[i].prix + "</td><td>" + data[i].age +"</td><td>" + data[i].date_creation+"</td id='etat'><td class='bu'>"  + "<button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "'><i class='fa-solid fa-trash-can'></i></button><button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'><i class='fa-solid fa-eye'></i> </button><button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'><i class='fas fa-edit'></i> </button></td></tr>";
+                output += "<tr><input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'><input type='hidden' name='produit_id' value='" + data[i].id_produit + "'><td>" + data[i].typ_cat + "</td><td>" + data[i].sexe + "</td><td>" + data[i].nam + "</td><td>"  + data[i].prix + "</td><td>" + data[i].age +"</td><td>" + data[i].date_creation+"</td id='etat'><td class='bu'>"  + "    <button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "'><i class='fa-solid fa-trash-can'></i></button><button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'><i class='fa-solid fa-eye'></i> </button><button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'><i class='fas fa-edit'></i> </button></td></tr>";
 
                 ;
             }

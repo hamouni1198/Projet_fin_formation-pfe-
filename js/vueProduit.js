@@ -123,89 +123,53 @@ document.getElementById('quantite').addEventListener('click', function(event) {
 
 });
 
-
-
-//envoyer au panier
+// add produit
 $(document).ready(function() {
   $('#addToCart').on('click', function(e) {
     e.preventDefault();
-    if (validateForm()) {
-      var username = $('#username').val();
-      var email = $('#email').val();
-      var tel = $('#tel').val();
-      var productId = document.getElementById("produitId").value;
-      var quantity = parseInt($('#quantity').val(), 10);
-      var availableQuantity = parseInt($('#quantity').data('available-quantity'), 10);
+    var username = $('#username').val();
+    var email = $('#email').val();
+    var tel = $('#tel').val();
+    var productId = $('#produitId').val(); // Correction pour obtenir la valeur de productId
+    var quantity = parseInt($('#quantity').val(), 10);
+    var availableQuantity = parseInt($('#quantity').data('available-quantity'), 10);
 
-      if (quantity <= availableQuantity) {
-        // Vérification dans la console
-        console.log("Données envoyées :", {
-          username: username,
-          email: email,
-          tel: tel,
+    if (quantity <= availableQuantity) {
+      console.log("Données envoyées :", {
+        username: username,
+        email: email,
+        tel: tel,
+        productId: productId,
+        quantity: quantity
+      });
+
+      $.ajax({
+        url: 'panierTraitement.php',
+        method: 'POST',
+        data: {
           productId: productId,
           quantity: quantity
-        });
-
-        // Votre code AJAX pour envoyer les données au serveur
-        $.ajax({
-          url: 'panierTraitement.php',
-          method: 'POST',
-          data: {
-            username: username,
-            email: email,
-            tel: tel,
-            productId: productId,
-            quantity: quantity
-          },
-          success: function(response) {
-            // Afficher un message de succès
+        },
+        success: function(response) {
+          if (response.trim() === "Client non connecté!") {
+            alert("Client non connecté! Veuillez vous connecter pour ajouter des produits au panier.");
+          } else {
+            alert(response);
             $('#succes').css('display', 'flex');
-            // Recharger la page après 1 seconde
             setTimeout(function() {
               window.location.href = 'sitePrincipale.php';
             }, 1000);
-          },
-          error: function(xhr, status, error) {
-            console.error(error);
-            alert('Une erreur s\'est produite lors de l\'ajout du produit au panier.');
           }
-        });
-      } else {
-        alert("La quantité choisie n'est pas disponible en stock.");
-      }
+        },
+        error: function(xhr, status, error) {
+          console.error(error);
+          alert('Une erreur s\'est produite lors de l\'ajout du produit au panier.');
+        }
+      });
+    } else {
+      alert("La quantité choisie n'est pas disponible en stock.");
     }
   });
-
-  function validateForm() {
-    var isValid = true;
-    $('#productForm #username,#productForm #email,#productForm #tel').each(function() {
-        if ($(this).val() === '') {
-            isValid = false;
-            alert('Veuillez remplir tous les champs.');
-            return false; // Arrêter la boucle each() si un champ est vide
-        }
-    });
-
-    // Validation du format de l'email
-    var email = $('#email').val();
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        isValid = false;
-        alert('Veuillez entrer un email valide.');
-    }
-
-    // Validation du format du téléphone
-    var tel = $('#tel').val();
-    var telPattern = /^\d+$/; // Modifiez ce pattern selon le format de téléphone souhaité
-    if (!telPattern.test(tel)) {
-        isValid = false;
-        alert('Veuillez entrer un numéro de téléphone valide.');
-    }
-
-    return isValid;
-}
-
-
-  
 });
+
+        

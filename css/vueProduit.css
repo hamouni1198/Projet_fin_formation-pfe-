@@ -106,8 +106,8 @@ input:focus {
 
 /* Left Column */
 .left-column img {
-  width: 71%;
-  height: 65%;
+  width: 78%;
+  max-height: 100%;
   position: absolute;
   left: 0;
   top: 62px;

@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mega Joeut - Hight Quality </title>
-  <meta name="title" content="Kitter - Hight Quality Pet Food">
-  <meta name="description" content="This is an eCommerce html template made by codewithsadee">
+  <meta name="description" content="c'est un site ecommerce creer par hamouni">
   <link rel="shortcut icon" href="../logo./img1.jpg" type="image/svg+xml">
   <link rel="stylesheet" href="../css./sitePrincipale.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <link
     href="https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Nunito+Sans:wght@400;700&display=swap"
     rel="stylesheet">
-  <link rel="preload" as="image" href="./assets/images/hero-banner.jpg">
 
 </head>
 
@@ -37,29 +37,41 @@
         - #panier
       -->
 
-<div class="panier">
-  <div class="confirmation">
-  <div class="infoPanier">
-<h1>Votre Panier</h1>
-<h2 class="nbr">nombre d'article</h2>
-  </div>
-  <div class="buttonP">
-  <button>confirmer commande</button>
-  </div>
-  </div>
-  <div class="produit">
-  <div class="imgPV">
+      <div class="panier" id='Pan'>
+   
+   <section class="product-container">
+       <i class="fa-solid fa-xmark"  id="PanierC"></i>
+       
+       <div class="produit">
+        <div class="infP">
+        <div class="table-responsive">
+    <table class="table  table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>produit</th>
+                <th>nom</th>
+                <th>prix</th>
+                <th>quantité</th>
+                <th>prix total</th>
+                <th>Action</th>
 
-  </div>
-  <div class="infoImage">
-    <h1>nom produit</h1>
-    <h4>quantité</h4>
-  </div>
-  <div class="prix">
-    <h2>prix de produit</h2>
-  </div>
-  </div>
+            </tr>
+        </thead>
+        <tbody id="resultats"> 
+        </tbody>
+    </table>
+    <div class="final">
+    <h4 id="total"></h4>
+    <button>Confirmer</button>
+    </div>
 </div>
+   
+                    </div>
+        </div>
+        </div>
+</section>
+</div>
+
 <header class="header" data-header>
     <div class="container">
 
@@ -99,9 +111,9 @@
           <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
         </button>
 
-        <button class="action-btn" aria-label="cart">
+        <button class="action-btn" aria-label="cart" id="panieB">
           <ion-icon name="bag-handle-outline" aria-hidden="true" ></ion-icon>
-          <span class="btn-badge">0</span>
+          <span class="btn-badge" id="nbProduit">0</span>
         </button>
 
       </div>
