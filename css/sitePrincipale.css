@@ -12,22 +12,40 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    position: fixed;
     z-index: 5;
     }
   .panier .product-container {
     background-color: rgb(255 255 255);
-    max-width: 731px;
-    max-height: 435px;
+    width: 731px;
+    max-height: 621px;
     border-radius: 25px;
     border: 1px #d1d1d1 solid;
     box-shadow: 2px -3px 14px 1px #d4d4d4;
-    position: absolute;
+    position: fixed;
     z-index: 1;
-    left: 54%;
+    left: 52%;
     top: 10%;
   }
- 
+ .final{
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  border-bottom-right-radius: 14px;
+  border-bottom-left-radius: 14px;
+  margin-bottom: 9px;
+
+ }
+ .final #total{
+  font-size: 15px;
+  font-family: auto;
+
+ }
+ .final button{
+  background-color: green;
+    border-radius: 5px;
+    width: 103px;
+    color: white;
+ }
   .panier .product-container i{
     display: flex;
     justify-content: end;
@@ -36,6 +54,23 @@
     right: 13px;
     top: 9px;
     cursor: pointer;
+    }
+    .panier .product-container .monPanier{
+      color: #333;
+    margin-left: 13px;
+    text-align: justify;
+    margin-top: 5px;
+
+      }
+   
+    .panier .product-container .b2 i{
+      display: flex;
+      cursor: pointer;
+      color: red;
+      left: 0px;
+      top: 0px;
+      font-size: 16px;
+      
     }
     .panier .product-container h3{
       text-align: center;
@@ -53,7 +88,6 @@
       
       .panier .product-container .produit .infP{
         width: 100%;
-        margin-top: 35px;
       }
       .panier .product-container .produit .infP h4{
         font-family: "Heebo", sans-serif;
@@ -262,6 +296,11 @@
       background-color: rgb(255, 255, 255);
 
       }
+      .table-responsive .table h3{
+        text-align: center;
+        font-size: larger;
+        color: #ff7f00;
+      }
       .table-responsive .table #resultats #img{
         background-position: center;
         background-size: cover;
@@ -271,11 +310,13 @@
         padding: 13px 0px 13px 55px;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
-        font-size: 1.7rem;
+        font-size: 8px;
         font-weight: 600;
       }
       .table-responsive .table td{
-        padding: 28px 0px 28px 55px;
+        padding: 16px 0px 17px 55px;
+        
+        font-size: 10px;
       }
    
       .table-responsive .table tr:nth-child(even) {

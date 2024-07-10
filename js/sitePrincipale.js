@@ -1,5 +1,5 @@
 'use strict';
-
+var total=0;
 const addEventOnElem = function (elem, type, callback) {
   if (elem.length > 1) {
     for (let i = 0; i < elem.length; i++) {
@@ -151,6 +151,18 @@ document.getElementById('user').addEventListener('click', function() {
   document.getElementById('login').classList.add('show');
 });
 
+document.addEventListener('click', function(event) {
+  const loginPopup = document.getElementById('login');
+  const userButton = document.getElementById('user');
+  
+  // Vérifie si le clic s'est produit en dehors de la popup de connexion et du bouton utilisateur
+  if (!loginPopup.contains(event.target) && !userButton.contains(event.target)) {
+    loginPopup.classList.remove('show');
+  }
+});
+
+
+
 //login
 $(document).ready(function() {
   $(document).on('click', '#loginUser', function(e) {
@@ -204,12 +216,15 @@ window.location.reload()
 //ouvrire panier
 document.getElementById('panieB').addEventListener('click', function() {
   document.getElementById('Pan').style.display = 'flex';
-
-    });
-document.getElementById('PanierC').addEventListener('click', function() {
-  document.getElementById('Pan').style.display = 'none';
-
 });
+document.addEventListener('click', function(event) {
+  const panierPopup = document.getElementById('Pan');
+  const panierButton = document.getElementById('panieB');
+    if (!panierPopup.contains(event.target) && !panierButton.contains(event.target)) {
+    panierPopup.style.display = 'none';
+  }
+});
+
 
 
 
@@ -224,13 +239,12 @@ $(document).ready(function() {
               if (response.produits) {
                   var produits = response.produits;
                   var tableBody = $('#resultats');
-                  var total = 0; // Initialize total variable
 
                   tableBody.empty();
                   produits.forEach(function(produit) {
                       var prix = produit.prix * produit.quantite;
                       total += parseFloat(prix); // Add each product's price to the total
-
+                    
                       var row = $('<tr></tr>');
                       var imgUrls = produit.img.split(',');
                       var firstUrl = imgUrls[0].trim(); // Trim to remove any extra spaces
@@ -242,17 +256,18 @@ $(document).ready(function() {
                       row.append($('<td></td>').text(produit.quantite));
                       row.append($('<td id="prix"></td>').text(prix));
                       row.append($('<td></td>').html('<button class="b2" id="delete" data-produit-id="' + produit.id_produit + '"><i class="fa-solid fa-trash-can"></i></button>'));
-
+                      $('#id_client').val(produit.id_panier);   
+                                         
                       tableBody.append(row);
                   });
-
-                  $('#total').text(total.toFixed(2)+"DH"); // Display total with 2 decimal places
+                  $('#total').text("le Total est de: "+total.toFixed(2)+"DH"); // Display total with 2 decimal places
 
                   $('#produitsTable').show();
                   $('#nbProduit').text(response.nbProduit)
 
                   console.log("Nombre de produits dans le panier:", response.nbProduit);
               } else {
+                $('#non').text("Aucun produit trouvé.")
                   console.log('Aucun produit trouvé.');
               }
           },
@@ -287,4 +302,41 @@ $(document).ready(function() {
           }
       });
   
+});
+
+
+//confirmer commande
+$(document).ready(function() {
+  $('#ConCom').click(function(e) {
+      e.preventDefault();
+
+      var input_client = $('#id_client').val().trim();
+      var totalText = $('#total').text();
+      var totalNombre = parseFloat(totalText.match(/\d+\.\d{2}/));
+
+      if (input_client === '') {
+          $('#message').text('Aucun client spécifié');
+      } else {
+          $.ajax({
+              url: 'envoDetail.php',
+              method: 'POST',
+              data: {
+                  input_client: input_client,
+                  total: totalNombre
+              },
+              dataType: 'json',
+              success: function(response) {
+                  if (response.status === 'success') {
+                      window.location.href = 'payment.php';
+                  } else {
+                      $('#message').text('Erreur lors de l\'envoi des données');
+                  }
+              },
+              error: function(xhr, status, error) {
+                  console.error('Erreur AJAX:', status, error);
+                  $('#message').text('Erreur AJAX: Veuillez réessayer');
+              }
+          });
+      }
+  });
 });

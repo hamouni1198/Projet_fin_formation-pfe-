@@ -151,10 +151,11 @@ $(document).ready(function() {
           quantity: quantity
         },
         success: function(response) {
+          console.log(response);
           if (response.trim() === "Client non connecté!") {
             alert("Client non connecté! Veuillez vous connecter pour ajouter des produits au panier.");
+            window.location.href = 'sitePrincipale.php?connecte vous';
           } else {
-            alert(response);
             $('#succes').css('display', 'flex');
             setTimeout(function() {
               window.location.href = 'sitePrincipale.php';

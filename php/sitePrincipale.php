@@ -21,57 +21,12 @@
 
 <body id="top">
 
- 
-<div class="login" id="login">
-  <div class="card">
-    <h2>Login</h2>
-    <form method="POST" id="loginCl">
-      <input type="text" id="username" name="username" placeholder="Username" required>
-      <input type="email" id="Email" name="Email" placeholder="Email" required>
-      <input type="tel" id="tel" name="tel" placeholder="Tel" required>
-      <button type="submit" id="loginUser">Login</button>
-    </form>
-  </div>
-</div>
+
 <!-- 
         - #panier
       -->
 
-      <div class="panier" id='Pan'>
-   
-   <section class="product-container">
-       <i class="fa-solid fa-xmark"  id="PanierC"></i>
-       
-       <div class="produit">
-        <div class="infP">
-        <div class="table-responsive">
-    <table class="table  table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>produit</th>
-                <th>nom</th>
-                <th>prix</th>
-                <th>quantité</th>
-                <th>prix total</th>
-                <th>Action</th>
-
-            </tr>
-        </thead>
-        <tbody id="resultats"> 
-        </tbody>
-    </table>
-    <div class="final">
-    <h4 id="total"></h4>
-    <button>Confirmer</button>
-    </div>
-</div>
-   
-                    </div>
-        </div>
-        </div>
-</section>
-</div>
-
+      
 <header class="header" data-header>
     <div class="container">
 
@@ -110,11 +65,50 @@
         <button class="action-btn user" aria-label="User"  id='user'>
           <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
         </button>
+         
+<div class="login" id="login">
+  <div class="card">
+    <h2>Login</h2>
+    <form method="POST" id="loginCl">
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <input type="email" id="Email" name="Email" placeholder="Email" required>
+      <input type="tel" id="tel" name="tel" placeholder="Tel" required>
+      <button type="submit" id="loginUser">Login</button>
+    </form>
+  </div>
+</div>
 
         <button class="action-btn" aria-label="cart" id="panieB">
           <ion-icon name="bag-handle-outline" aria-hidden="true" ></ion-icon>
           <span class="btn-badge" id="nbProduit">0</span>
         </button>
+        <div class="panier" id='Pan'>
+   <input type="hidden" id="id_client">
+   
+   <section class="product-container">
+       <div class="produit">
+         <div class="infP">
+          <h2 class="monPanier">Mon Panier</h2>
+        <div class="table-responsive">
+    <table class="table  table-striped table-bordered">
+     
+        <tbody id="resultats"> 
+          <h3 id="non"></h3>
+        </tbody>
+    </table>
+   
+  </div>
+  <div class="final">
+      <h4 id="total"></h4>
+      <button id="ConCom">Confirmer</button>
+      </div>
+   
+                    </div>
+        </div>
+        </div>
+</section>
+</div>
+
 
       </div>
 
