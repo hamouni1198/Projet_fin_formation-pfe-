@@ -220,3 +220,31 @@ form button {
 .succeed-form button {
     font-size: 18px;
 }
+.succes{
+    border-radius: 40px;
+    width: 24%;
+    background-color: white;
+    bottom: -169px;
+      align-items: center;
+      gap: 24px;
+      margin: 24px;
+      display: none;
+      position: absolute;
+      left: 74%;
+      bottom: 0;
+      animation: toastAnimation 0.4s;
+  }
+  .succes .icon{
+    width: 46%;
+    background: #81BB26;
+    height: 134px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 52px;
+    color: white;
+    border-radius: 12px;
+  }
+  .succes .text h3{
+    color: #81BB26;
+  }

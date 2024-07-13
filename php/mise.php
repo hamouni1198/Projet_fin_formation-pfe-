@@ -89,6 +89,7 @@
                 <th>prix</th>
                 <th>age</th>
                 <th>Date-Creation</th>
+                <th>état</th>
                 <th>Action</th>
 
             </tr>
@@ -226,6 +227,7 @@
                         <option value=""></option>
                         <option value="garcon">garcon</option>
                         <option value="fille">fille</option>
+                        <option value="fille-garcon">fille-garcon</option>
                     </select>
                     </td>
                 </tr>
@@ -253,11 +255,17 @@
                     <td><input type="text" name='a' id="a" autocomplete="off"></td>
 
                 </tr>
-                <tr>
-                    <td><label>Src-image:</label></td>
-                    <td><input type="text" name='i' id="i" autocomplete="off"></td>
-
-                </tr>
+                <tr class="images">
+                <td colspan="2">
+                    <label for="fileimg" class="drop-container" id="dropcontainer">
+                        <span class="drop-title">Déposez les fichiers ici</span>
+                        ou
+                        <input type="file" name="fileImg[]" id="imgedite" accept="image/*" multiple required>
+                    </label>
+                </td>
+            </tr>
+            
+               
                 <tr>
                     <td><label >Description:</label></td>
                     <td><textarea name="d" id="d" cols="30" rows="5" autocomplete="off"></textarea></td>

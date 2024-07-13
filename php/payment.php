@@ -8,11 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css./payment.css">
-  <title>Interactive card details form</title>
+  <title>payment</title>
 
 </head>
 
 <body>
+<input type="hidden" id="id_panier">
+<input type="hidden" id="id_client">
+<input type="hidden" id="totalPrix">
+<input type="hidden" id="quantiteAchete">
 
   <section class="main-container">
     <div class="content-container">
@@ -22,7 +26,7 @@
           <img src="../logo./card-logo.svg" alt="logo" width="70px">
           <p class="cardNumberP">0000 0000 0000 0000</p>
           <div>
-            <span class="nameSpan">IAN VIEIRA</span>
+            <span class="nameSpan">Mega Joeut</span>
             <span>
               <span class="monthSpan">04</span>/
               <span class="yearSpan">23</span>
@@ -54,32 +58,28 @@
             <input type="text" name="cvc" id="cvc" placeholder="Ex.: 123" maxlength="3">
             <p class="empty">code de validation.</p>
           </div>
-          
         </div>
-        <div class="adresse">
-            <div calss="in">
-            <label for="adresse">adresse</label>
-            <input type="text" name="adresse" id="adresse" placeholder="adresse" maxlength="3">
-            <p class="empty">votre adresse.</p>
-            </div>
-            <h2 id="prix">bonjour</h2>
-          </div>
-          <button type="submit">Confirmar</button>
+        <label for="name">Adresse </label>
+        <input type="text" name="name" class="name" placeholder="Ex.: Rue 11 Nr 14" maxlength="28" autocomplete="off">
+        <p class="empty">Votre adresse</p>
+           
+          <button type="submit" id="confermer">Confirmar</button>
         </div>
 
     </form>
-    <input type="hiddden"  id="panier_id" >
-
-
-      <form class="succeed-form hide">
-        <img src="../logo./icon-complete.svg" alt="">
-        <h2>OBRIGADO!</h2>
-        <p>Seus dados do cartão foram adicionados</p>
-        <button type="submit">Voltar</button>
-      </form>
-
     </div>
   </section>
+  <div class="succes" id="succes">
+    <div class="icon">
+    <i class="fa-solid fa-check"></i>
+    </div>
+    <div class="text">
+        <h3>Succés!</h3>
+        <p>l'opération est faite avec succès</p>
+
+    </div>
+    </div>
+
   <script src="../js/ajax.js"></script>
 
   <script src="../js./payment.js"></script>

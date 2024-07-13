@@ -114,37 +114,51 @@ form.addEventListener('submit', (e) => {
     }
 })
 
-succeedForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    succeedForm.classList.add('hide')
-    form.classList.remove('hide')
-})
 
 
 
-//afiche detail payment
 
+var idPanier = localStorage.getItem("id_panier");
+var idClient = localStorage.getItem("id_client");
+var total = localStorage.getItem("total");
+var quantiteAchete = localStorage.getItem("quantiteAchete");
+
+
+// Afficher les données dans la div 'panier-summary'
+document.getElementById('id_panier').value = idPanier;
+document.getElementById('id_client').value = idClient;
+document.getElementById('totalPrix').value = total;
+document.getElementById('quantiteAchete').value = total;
+console.log(total);
+
+
+//confirmer payment
 $(document).ready(function() {
-    $.ajax({
-        url: 'envoDetail.php',
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            console.log(response);
-            if (response && response.status === 'success') {
-                $('#prix').text(response.data.total);
-                $('#panier_id').val(response.data.panier_id);
-                console.log(response.data.panier_id);
-            } else if (response && response.status === 'error' && response.message === 'Méthode de requête invalide') {
-                // Handle invalid request method error
-                $('#response').html('<p>Erreur: Méthode de requête invalide</p>');
-            } else {
-                // Handle other errors or unexpected responses
-                $('#response').html('<p>Erreur: Aucune donnée reçue</p>');
+    document.getElementById("confermer").addEventListener("click", function() {
+        var id_panier = $('#id_panier').val();
+        var id_client = $('#id_client').val();
+        var total = $('#totalPrix').val();
+        $.ajax({
+            url: 'passeCommande.php',
+            method: 'POST',
+            data: {
+                id_panier: id_panier,
+                id_client: id_client,
+                total: total
+            },
+            success: function(response) {
+                window.location.href='sitePrincipale.php';  
+            },
+            error: function(xhr, status, error) {
+                console.error("Erreur de l'appel AJAX:", error);
+                setTimeout(function() {
+                    $('#error').css('display', 'inline-flex').css('zIndex', 1).addClass('error');
+  
+                    setTimeout(function() {
+                        $('#error').css('display', 'none');
+                    }, 3000); // Durée du toast d'erreur
+                }, 0); 
             }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            $('#response').html('<p>Erreur AJAX: ' + textStatus + '</p>');
-        }
+        });
     });
 });

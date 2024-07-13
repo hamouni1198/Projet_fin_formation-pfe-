@@ -17,7 +17,7 @@ $con = connect();
 $id_client = $_SESSION['id_client'];
 
 // Requête SQL pour récupérer les produits du panier
-$sql = "SELECT produit.id_produit, produit.nam, produit.img, produit.prix, detail.quantite,panier.id_panier
+$sql = "SELECT produit.id_produit, produit.nam, produit.img, produit.prix, detail.quantite,panier.id_panier,panier.id_client
         FROM panier
         INNER JOIN detail ON panier.id_panier = detail.id_panier
         INNER JOIN produit ON detail.id_produit = produit.id_produit

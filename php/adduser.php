@@ -4,6 +4,12 @@ include('connect.php');
 $con = connect();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Détruire l'ancienne session
+    session_unset();
+    session_destroy();
+    // Recommencer une nouvelle session
+    session_start();
+
     if (isset($_POST['tel'])) {
         $tel = $_POST['tel'];
     }
@@ -15,9 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Vérifier si le client existe déjà
-    $check_stmt = $con->prepare("SELECT id_client FROM client WHERE nom = ? AND email = ? AND  tel = ?");
-
-    $check_stmt->bind_param("sss", $nom, $email,$tel);
+    $check_stmt = $con->prepare("SELECT id_client FROM client WHERE nom = ? AND email = ? ");
+    $check_stmt->bind_param("ss", $nom, $email);
     $check_stmt->execute();
     $check_stmt->store_result();
     
@@ -38,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $client_id = $con->insert_id;
             // Stocker l'ID du client dans la session
             $_SESSION['id_client'] = $client_id;
-            $_SESSION['client_nom'] = $nom; // Vous pouvez aussi stocker le nom du client si nécessaire
+            $_SESSION['client_nom'] = $nom;
             echo "New record created successfully. Client ID: " . $client_id;
         } else {
             echo "Error: " . $stmt->error;

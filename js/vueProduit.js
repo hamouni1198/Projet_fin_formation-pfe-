@@ -122,27 +122,14 @@ document.getElementById('quantite').addEventListener('click', function(event) {
   event.preventDefault(); // Prevent form submission
 
 });
-
 // add produit
 $(document).ready(function() {
   $('#addToCart').on('click', function(e) {
     e.preventDefault();
-    var username = $('#username').val();
-    var email = $('#email').val();
-    var tel = $('#tel').val();
     var productId = $('#produitId').val(); // Correction pour obtenir la valeur de productId
     var quantity = parseInt($('#quantity').val(), 10);
     var availableQuantity = parseInt($('#quantity').data('available-quantity'), 10);
-
     if (quantity <= availableQuantity) {
-      console.log("Données envoyées :", {
-        username: username,
-        email: email,
-        tel: tel,
-        productId: productId,
-        quantity: quantity
-      });
-
       $.ajax({
         url: 'panierTraitement.php',
         method: 'POST',

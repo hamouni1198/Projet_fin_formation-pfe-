@@ -83,8 +83,9 @@
           <span class="btn-badge" id="nbProduit">0</span>
         </button>
         <div class="panier" id='Pan'>
+   <input type="hidden" id="id_produit">
+   <input type="hidden" id="id_panier">
    <input type="hidden" id="id_client">
-   
    <section class="product-container">
        <div class="produit">
          <div class="infP">

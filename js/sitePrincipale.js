@@ -253,20 +253,19 @@ $(document).ready(function() {
                       row.append($('<td id="img"></td>').css('background-image', 'url(' + imageUrl + ')'));
                       row.append($('<td></td>').text(produit.nam)); // Corrected property name
                       row.append($('<td></td>').html(produit.prix));
-                      row.append($('<td></td>').text(produit.quantite));
+                      row.append($('<td id="quantiteAchete"></td>').text(produit.quantite));
                       row.append($('<td id="prix"></td>').text(prix));
-                      row.append($('<td></td>').html('<button class="b2" id="delete" data-produit-id="' + produit.id_produit + '"><i class="fa-solid fa-trash-can"></i></button>'));
-                      $('#id_client').val(produit.id_panier);   
-                                         
+
+                      row.append($('<td></td>').html('<button class="b2" id="delete"  data-produit-id="' + produit.id_produit + '"><i class="fa-solid fa-trash-can"></i></button>'));
+                      $('#id_produit').val(produit.id_produit);   
+                      $('#id_panier').val(produit.id_panier);
+                      $('#id_client').val(produit.id_client);
                       tableBody.append(row);
                   });
                   $('#total').text("le Total est de: "+total.toFixed(2)+"DH"); // Display total with 2 decimal places
-
                   $('#produitsTable').show();
-                  $('#nbProduit').text(response.nbProduit)
-
-                  console.log("Nombre de produits dans le panier:", response.nbProduit);
-              } else {
+                  $('#nbProduit').text(response.nbProduit);
+                  } else {
                 $('#non').text("Aucun produit trouvé.")
                   console.log('Aucun produit trouvé.');
               }
@@ -290,8 +289,6 @@ $(document).ready(function() {
           success: function(response) {
               if (response.produits) {
                   $('#nbProduit').text(response.nbProduit)
-
-                  console.log("Nombre de produits dans le panier:", response.nbProduit);
               } else {
                   console.log('Aucun produit trouvé.');
               }
@@ -303,40 +300,52 @@ $(document).ready(function() {
       });
   
 });
+//delete produit de panier
+$(document).ready(function() {
+  $(document).on('click', '#delete', function() {
+      var id_panier = $('#id_panier').val();
+      var id_produit = $('#id_produit').val();
+      $.ajax({
+          url: 'delelteProduitPanier.php',
+          method: 'POST',
+          data: {
+              id_panier: id_panier,
+              id_produit: id_produit
+          },
+          success: function(response) {
+              console.log("Réponse du serveur:", response);
+          window.location.reload();
 
+        },
+          error: function(xhr, status, error) {
+              console.error("Erreur de l'appel AJAX:", error);
+              setTimeout(function() {
+                  $('#error').css('display', 'inline-flex').css('zIndex', 1).addClass('error');
+
+                  setTimeout(function() {
+                      $('#error').css('display', 'none');
+                  }, 3000); // Durée du toast d'erreur
+              }, 0); 
+          }
+      });
+  });
+});
 
 //confirmer commande
-$(document).ready(function() {
-  $('#ConCom').click(function(e) {
-      e.preventDefault();
+document.getElementById("ConCom").addEventListener("click", function() {
+  // Récupérer les valeurs des champs cachés
+  var idPanier = document.getElementById("id_panier").value;
+  var idClient = document.getElementById("id_client").value;
+  var totalText = document.getElementById("total").innerText;
+  var quantiteAchete = document.getElementById("quantiteAchete").innerText;
+  var montant = parseFloat(totalText.replace("le Total est de: ", "").replace(" DH", ""));
 
-      var input_client = $('#id_client').val().trim();
-      var totalText = $('#total').text();
-      var totalNombre = parseFloat(totalText.match(/\d+\.\d{2}/));
 
-      if (input_client === '') {
-          $('#message').text('Aucun client spécifié');
-      } else {
-          $.ajax({
-              url: 'envoDetail.php',
-              method: 'POST',
-              data: {
-                  input_client: input_client,
-                  total: totalNombre
-              },
-              dataType: 'json',
-              success: function(response) {
-                  if (response.status === 'success') {
-                      window.location.href = 'payment.php';
-                  } else {
-                      $('#message').text('Erreur lors de l\'envoi des données');
-                  }
-              },
-              error: function(xhr, status, error) {
-                  console.error('Erreur AJAX:', status, error);
-                  $('#message').text('Erreur AJAX: Veuillez réessayer');
-              }
-          });
-      }
-  });
+  localStorage.setItem("id_panier", idPanier);
+  localStorage.setItem("id_client", idClient);
+  localStorage.setItem("total", montant);
+  localStorage.setItem("quantiteAchete", quantiteAchete);
+
+  // Rediriger vers la page de paiement
+  window.location.href = "payment.php";
 });

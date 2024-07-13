@@ -5,7 +5,7 @@ $con = connect();
 if(isset($_POST['produitId'])) {
     $produitId = $_POST['produitId'];
     
-    $deleteQuery = "DELETE FROM produit_post WHERE id_produit = '$produitId'";
+    $deleteQuery = "UPDATE produit SET etat = 0 WHERE id_produit= $produitId";
     $deleteResult = $con->query($deleteQuery);
 
     if ($deleteResult) {

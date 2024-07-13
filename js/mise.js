@@ -220,8 +220,31 @@ $(document).ready(function() {
                 var output = "";
                 // Construction du contenu HTML à partir des données reçues
                 for (var i = 0; i < data.length; i++) {
-                    output += "<tr><input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'><input type='hidden' name='produit_id' value='" + data[i].id_produit + "'><td>" + data[i].typ_cat + "</td><td>" + data[i].sexe + "</td><td>" + data[i].nam + "</td><td>"  + data[i].prix + "</td><td>" + data[i].age +"</td><td>" + data[i].date_creation+"</td id='etat'><td class='bu'>"  + "<button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "'><i class='fa-solid fa-trash-can'></i></button><button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'><i class='fa-solid fa-eye'></i> </button><button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'><i class='fas fa-edit'></i> </button></td></tr>";
-                }
+                    var etat;
+                    if (data[i].etat == 1) {
+                        etat = "Active";
+                    } else {
+                        etat = "Desactive";
+                    }
+                    console.log(etat);
+
+                    output += "<tr>" +
+                        "<input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'>" +
+                        "<input type='hidden' name='produit_id' value='" + data[i].id_produit + "'>" +
+                        "<td>" + data[i].typ_cat + "</td>" +
+                        "<td>" + data[i].sexe + "</td>" +
+                        "<td>" + data[i].nam + "</td>" +
+                        "<td>" + data[i].prix + "</td>" +
+                        "<td>" + data[i].age + "</td>" +
+                        "<td>" + data[i].date_creation + "</td>" +
+                        "<td><button id='etat'>" + etat + "</button></td>" +
+                        "<td class='bu'>" +
+                        "<button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "' data-produit-id='" + data[i].id_produit + "'>" +
+                        "<i class='fa-solid fa-trash-can'></i></button>" +
+                        "<button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'>" +
+                        "<i class='fa-solid fa-eye'></i> </button>" +
+                        "<button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'>" +
+                        "<i class='fas fa-edit'></i> </button></td></tr>";                }
                 // Injection du contenu HTML dans l'élément avec l'ID 'resultats'
                 $('#resultats').html(output);
 
@@ -261,15 +284,40 @@ $(document).ready(function() {
         success: function(data) {
             var output = "";
             if (data.length > 0) {
-            for (var i = 0; i < data.length; i++) {
-                output += "<tr><input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'><input type='hidden' name='produit_id' value='" + data[i].id_produit + "'><td>" + data[i].typ_cat + "</td><td>" + data[i].sexe + "</td><td>" + data[i].nam + "</td><td>"  + data[i].prix + "</td><td>" + data[i].age +"</td><td>" + data[i].date_creation+"</td id='etat'><td class='bu'>"  + "    <button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "'><i class='fa-solid fa-trash-can'></i></button><button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'><i class='fa-solid fa-eye'></i> </button><button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'><i class='fas fa-edit'></i> </button></td></tr>";
+                for (var i = 0; i < data.length; i++) {
+                    var etat;
+                    if (data[i].etat == 1) {
+                        etat = "Active";
+                    } else {
+                        etat = "Desactive";
+                    }
+                    console.log(etat);
 
-                ;
-            }
-            }else {
+                    output += "<tr>" +
+                        "<input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'>" +
+                        "<input type='hidden' name='produit_id' value='" + data[i].id_produit + "'>" +
+                        "<td>" + data[i].typ_cat + "</td>" +
+                        "<td>" + data[i].sexe + "</td>" +
+                        "<td>" + data[i].nam + "</td>" +
+                        "<td>" + data[i].prix + "</td>" +
+                        "<td>" + data[i].age + "</td>" +
+                        "<td>" + data[i].date_creation + "</td>" +
+                        "<td><button id='etat'>" + etat + "</button></td>" +
+                        "<td class='bu'>" +
+                        "<button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "' data-produit-id='" + data[i].id_produit + "'>" +
+                        "<i class='fa-solid fa-trash-can'></i></button>" +
+                        "<button class='vue' id='vue' data-produit-id='" + data[i].id_produit + "'>" +
+                        "<i class='fa-solid fa-eye'></i> </button>" +
+                        "<button class='b3' id='modifie' data-produit-id='" + data[i].id_produit + "'>" +
+                        "<i class='fas fa-edit'></i> </button></td></tr>";
+                }
+            } else {
                 output = "<tr><td colspan='7'>Aucun produit trouvé</td></tr>";
             }
             $('#resultats').html(output);
+        },
+        error: function(xhr, status, error) {
+            console.log("AJAX Error: " + status + ": " + error);
         }
     });
 });
@@ -279,13 +327,15 @@ $(document).ready(function() {
 $(document).ready(function() {
     $(document).on('click', '#b2', function() {
         var categoryId = $(this).data('categorie-id');
+        var produiId =$(this).data('data-produit-id')
         
         $.ajax({
             url: 'delet.php',
             method: 'POST',
             dataType: 'text', 
             data: {
-                categoryId: categoryId 
+                categoryId: categoryId ,
+                produiId: produiId
             },
             success: function(response) {
                 setTimeout(function() {
@@ -359,82 +409,71 @@ $(document).ready(function(){
 //modifie  envoie formulaire
 $(document).ready(function(){
     $('#enregistrer').click(function(e){
-    
         e.preventDefault();
-            console.log('clicked');
-            var type = $('#t').val();
-            var sexe = $('#s').val();
-            var nom = $('#n').val();
-            var stock = $('#st').val();
-            var prix = $('#p').val();
-            var age = $('#a').val();
-            var img = $('#i').val();
-            var desc = $('#d').val();
-            var date = $('#da').val();
-            var categorieId = $('#categorieId').val();
-            var produitId = $('#produitId').val();
-            var utilisateurId = $('#utilisateurId').val();
+        console.log('clicked');
 
+        var type = $('#t').val();
+        var sexe = $('#s').val();
+        var nom = $('#n').val();
+        var stock = $('#st').val();
+        var prix = $('#p').val();
+        var age = $('#a').val();
+        var desc = $('#d').val();
+        var date = $('#da').val();
+        var categorieId = $('#categorieId').val();
+        var produitId = $('#produitId').val();
+        var utilisateurId = $('#utilisateurId').val();
+        var files = $('#imgedite')[0].files;
 
-            let mydata= {
-                typeSend: type,
-                sexeSend: sexe,
-                nomSend: nom,
-                stockSend: stock,
-                prixSend: prix,
-                ageSend: age,
-                imgSend: img,
-                descSend: desc,
-                dateSend: date,
-                id_produit: produitId,
-                id_categorie: categorieId,
-                id_utilisateur: utilisateurId
+        let mydata = new FormData();
+        mydata.append('typeSend', type);
+        mydata.append('sexeSend', sexe);
+        mydata.append('nomSend', nom);
+        mydata.append('stockSend', stock);
+        mydata.append('prixSend', prix);
+        mydata.append('ageSend', age);
+        mydata.append('descSend', desc);
+        mydata.append('dateSend', date);
+        mydata.append('id_produit', produitId);
+        mydata.append('id_categorie', categorieId);
+        mydata.append('id_utilisateur', utilisateurId);
 
-            };
-            $.ajax({
-                url: "Envedite.php",
-                method: 'POST',
-                data: mydata,
-                success: function(data) {
-                    // This function runs if the AJAX request is successful
-            
-                    // Wait for a moment before showing the toast
+        for (let i = 0; i < files.length; i++) {
+            mydata.append('fileImg[]', files[i]);
+        }
+
+        $.ajax({
+            url: "Envedite.php",
+            method: 'POST',
+            data: mydata,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                setTimeout(function() {
+                    document.getElementById('succes').style.display = 'inline-flex';
+                    document.getElementById('succes').style.zIndex = '1';
+                    document.getElementById('succes').classList.add('succes');
                     setTimeout(function() {
-                        // Display the toast
-                        document.getElementById('succes').style.display = 'inline-flex';
-                        document.getElementById('succes').style.zIndex = '1';
-                        document.getElementById('succes').classList.add('succes');
-            
-                        // Hide the toast after 3 seconds (3000 milliseconds)
-                        setTimeout(function() {
-                            document.getElementById('succes').style.display = 'none';
-                            location.reload(); // Reload the page
-                        }, 1000);
-                    }, 100); // Display toast after 1 second
-                },
-                error: function(xhr, status, error) {
-                   // This function runs if the AJAX request is successful
-            
-                    // Wait for a moment before showing the toast
+                        document.getElementById('succes').style.display = 'none';
+                        location.reload(); // Reload the page
+                    }, 1000);
+                }, 100);
+            },
+            error: function(xhr, status, error) {
+                setTimeout(function() {
+                    document.getElementById('error').style.display = 'inline-flex';
+                    document.getElementById('error').style.zIndex = '1';
+                    document.getElementById('error').classList.add('error');
                     setTimeout(function() {
-                        // Display the toast
-                        document.getElementById('error').style.display = 'inline-flex';
-                        document.getElementById('error').style.zIndex = '1';
-                        document.getElementById('error').classList.add('error');
-            
-                        // Hide the toast after 3 seconds (3000 milliseconds)
-                        setTimeout(function() {
-                            document.getElementById('error').style.display = 'none';
-                            location.reload(); // Reload the page
-                        }, 1000);
-                    }, 100); // Display toast after 1 second
-                }
-            });
-        
+                        document.getElementById('error').style.display = 'none';
+                        location.reload(); // Reload the page
+                    }, 1000);
+                }, 100);
+            }
+        });
     });
-
-   
 });
+
 
 //vue
 $(document).ready(function() {
@@ -504,6 +543,10 @@ document.addEventListener("DOMContentLoaded", function() {
         var formData = new FormData();
         formData.append("id_produit_vue", idProduitVue);
         formData.append("id_categorie_vue", idCategorieVue);
+        formData.append("etat", 1);
+
+        
+
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "siteTraitement.php", true);

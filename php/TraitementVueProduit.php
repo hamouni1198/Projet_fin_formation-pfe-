@@ -8,7 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produit'], $_POST[
     $categorieId = $_POST['id_categorie'];
 
     // Requête SQL pour récupérer les détails du produit basés sur id_produit et id_categorie
-    $search = "SELECT * FROM produit_post WHERE id_produit = ? AND id_categorie = ?";
+    $search = "
+        SELECT produit.*, categorie.* 
+        FROM produit 
+        JOIN categorie ON categorie.id_categorie = produit.id_categorie
+        WHERE produit.id_produit = ? AND produit.id_categorie = ? AND produit.etat = 1
+    ";
     $stmt = $con->prepare($search);
 
     if ($stmt === false) {
