@@ -3,30 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hilfbox Login</title>
+    <title> Login</title>
+    <link rel="shortcut icon" href="../logo./img1.jpg" type="image/svg+xml">
+
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
     <div class="container">
         <div class="left-section">
-            <div class="welcome-message">
-             
-                <h1>Mega Jouet</h1>
-                <p>We are a community together helping thousands of people out there who are struggling.</p>
-            </div>
+       
         </div>
         <div class="right-section">
             <div class="form-container">
-                <h2>Get Started</h2>
+                <h2>LOGIN</h2>
                 <form id="loginForm">
                     <div class="input-group">
-                        <label for="name">Name</label>
+                        <label for="name">Nom</label>
                         <input type="text" id="name" name="nom" placeholder="Roseanne Park">
                         <div id="userError" class="error-message"></div>
                     </div>
                    
                     <div class="input-group">
-                        <label for="password">Password</label>
+                        <label for="password">Mote de Passe</label>
                         <input type="password" id="password" name="code" placeholder="Password">
                         <div id="passwordError" class="error-message"></div>
                     </div>

@@ -496,12 +496,13 @@ body{
   }
 }
 #etat{
-  background-color: #81BB26;
   border: none;
   border-radius: 5px;
-  width: 64px;
-  height: 23px;
+  width: 89px;
+  height: 24px;
   text-align: center;
+  color: white;
+  font-weight: 800;
 }
 
 .succes .icon{

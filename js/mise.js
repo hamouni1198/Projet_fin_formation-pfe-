@@ -223,8 +223,12 @@ $(document).ready(function() {
                     var etat;
                     if (data[i].etat == 1) {
                         etat = "Active";
+                        bgColor = '#81BB26';
+
                     } else {
                         etat = "Desactive";
+                        bgColor = '#ff7000';
+
                     }
                     console.log(etat);
 
@@ -237,7 +241,7 @@ $(document).ready(function() {
                         "<td>" + data[i].prix + "</td>" +
                         "<td>" + data[i].age + "</td>" +
                         "<td>" + data[i].date_creation + "</td>" +
-                        "<td><button id='etat'>" + etat + "</button></td>" +
+                        "<td><button id='etat' style='background-color: " + bgColor + ";'>" + etat + "</button></td>" +
                         "<td class='bu'>" +
                         "<button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "' data-produit-id='" + data[i].id_produit + "'>" +
                         "<i class='fa-solid fa-trash-can'></i></button>" +
@@ -286,12 +290,14 @@ $(document).ready(function() {
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
                     var etat;
+                    var bgColor;
                     if (data[i].etat == 1) {
                         etat = "Active";
+                        bgColor = '#81BB26';
                     } else {
                         etat = "Desactive";
+                        bgColor = '#ff7000';
                     }
-                    console.log(etat);
 
                     output += "<tr>" +
                         "<input type='hidden' name='categorie_id' value='" + data[i].id_categorie + "'>" +
@@ -302,7 +308,7 @@ $(document).ready(function() {
                         "<td>" + data[i].prix + "</td>" +
                         "<td>" + data[i].age + "</td>" +
                         "<td>" + data[i].date_creation + "</td>" +
-                        "<td><button id='etat'>" + etat + "</button></td>" +
+                        "<td><button id='etat' style='background-color: " + bgColor + ";'>" + etat + "</button></td>" +
                         "<td class='bu'>" +
                         "<button class='b2' id='b2' data-categorie-id='" + data[i].id_categorie + "' data-produit-id='" + data[i].id_produit + "'>" +
                         "<i class='fa-solid fa-trash-can'></i></button>" +
