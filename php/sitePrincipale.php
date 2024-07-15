@@ -193,7 +193,7 @@
               <div class="service-card">
 
                 <figure class="card-icon">
-                  <img src="./assets/images/service-icon-1.png" width="70" height="70" loading="lazy"
+                  <img src="../logo./service-icon-1.png" width="70" height="70" loading="lazy"
                     alt="service icon">
                 </figure>
 
@@ -210,7 +210,7 @@
               <div class="service-card">
 
                 <figure class="card-icon">
-                  <img src="./assets/images/service-icon-2.png" width="70" height="70" loading="lazy"
+                  <img src="../logo./service-icon-2.png" width="70" height="70" loading="lazy"
                     alt="service icon">
                 </figure>
 
@@ -228,7 +228,7 @@
               <div class="service-card">
 
                 <figure class="card-icon">
-                  <img src="./assets/images/service-icon-3.png" width="70" height="70" loading="lazy"
+                  <img src="../logo./service-icon-3.png" width="70" height="70" loading="lazy"
                     alt="service icon">
                 </figure>
 
@@ -246,7 +246,7 @@
               <div class="service-card">
 
                 <figure class="card-icon">
-                  <img src="./assets/images/service-icon-4.png" width="70" height="70" loading="lazy"
+                  <img src="../logo./service-icon-4.png" width="70" height="70" loading="lazy"
                     alt="service icon">
                 </figure>
 
@@ -320,7 +320,7 @@
 
             <li class="scrollbar-item">
               <div class="brand-card img-holder" style="--width: 150; --height: 150;">
-                <img src="./assets/images/brand-5.jpg" width="150" height="150" loading="lazy" alt="brand logo"
+                <img src="../logo./m5.png" width="150" height="150" loading="lazy" alt="brand logo"
                   class="img-cover">
               </div>
             </li>
